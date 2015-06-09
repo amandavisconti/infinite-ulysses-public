@@ -1,4 +1,0 @@
-name = "mymodule_ajax"
-description = "1234"
-core = 7.x
-package = Annotation Functionality
