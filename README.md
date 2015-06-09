@@ -1,3 +1,8 @@
-infinite-ulysses-public
-=======================
+Infinite Ulysses lets readers of James Joyce's challenging novel Ulysses (often named most important book of the twentieth century) while annotating it with their questions and interpretations and perusing annotations from fellow readers. The site also attempts to personalize the annotations displayed to each reader through a variety of mechanics such as filtering, sorting, and generating descriptive metadata around each annotation.
 
+The site is built by Amanda Visconti on Drupal, Annotator.js, and improvements to the Annotator and Annotation Drupal modules authored by Michael Widner for Lacuna Stories. Technical innovations include my addition of social voting, favoriting, and moderation to annotations, and various experimental reading page designs.
+
+This is the repo for all work on the InfiniteUlysses.com site going forward from after the completion of my Ph.D. (InfiniteUlysses.com was a large piece of my literature dissertation). See the [infinite-ulysses-dissertation repo](https://github.com/amandavisconti/infinite-ulysses-dissertation) for the repo as it was when I defended my dissertation, or check out [dr.AmandaVisconti.com](http://dr.amandavisconti.com) for more about the project around the website.
+
+Most planned features, needed bug fixes, and otehr issues can be found in the [issues queue](https://github.com/amandavisconti/infinite-ulysses-public/issues), where you're also welcome to suggest features or report bugs.
+A [wiki](https://github.com/amandavisconti/infinite-ulysses-public/wiki/Infinite-Ulysses-tech-wiki) contains technical notes and will eventually be used to create documentation for anyone looking to build on the eventual Drupal distribution.
