@@ -1,0 +1,29 @@
+/* Custom styling for the Radix theme by Amanda Visconti */
+
+body {
+font-family: 'Open Sans', sans-serif;
+}
+
+.view-my-bookmarks-view .view-empty {
+background: #555555;
+color: #FFFFFF;
+padding: 10px;
+}
+
+.node-book p {
+font-family: 'Merriweather', serif;
+}
+
+#annoclicker {
+position: relative;
+}  
+  
+#annoclicker:before {
+position: absolute;
+z-index: 100;
+font-family: FontAwesome;
+top: 0;
+left: 300px;
+font-size: 3em;
+content: "\f086";
+}
