@@ -1,0 +1,272 @@
+body {
+  -webkit-user-select: initial !important;
+  -moz-user-select: initial !important;
+  -ms-user-select: initial !important;
+  -o-user-select: initial !important;
+  user-select: initial !important;
+}
+
+/* Blocker */
+#mm-blocker {
+  background: #000 !important;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+}
+
+/* Menu nav */
+nav.mm-menu.mm-basic {
+  z-index: 1000;
+  background: #32394a;
+  color: #c4ccda;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: 0 1px #333;
+}
+
+nav.mm-menu.mm-basic [class^="icon-"],
+nav.mm-menu.mm-basic [class*=" icon-"],
+nav.mm-menu.mm-basic .mmenu-block-icon {
+  display: table-cell;
+  vertical-align: middle;
+  font-style: normal;
+  padding-right: 15px;
+}
+
+nav.mm-menu.mm-basic .mmenu-block-title {
+  display: table-cell;
+}
+
+nav.mm-menu.mm-basic > .mm-header {
+  border-color: #242a37;
+  color: #c4ccda;
+  height: 60px;
+  line-height: 60px;
+  /* Old browsers */
+  background: #434b5c;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #434b5c), color-stop(100%, #394152));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* IE10+ */
+  background: -ms-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #434b5c 0%, #394152 100%);
+  /* IE6-9 */
+  filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 )";
+}
+
+nav.mm-menu.mm-basic > .mm-header .mm-title {
+  font-size: 2em;
+  padding: 0 10%;
+  width: 80%;
+  text-align: center;
+}
+
+nav.mm-menu.mm-basic > .mm-header .mm-prev {
+  padding: 0;
+  left: 20px;
+  right: 90%;
+  top: 0;
+  bottom: 0;
+  width: auto;
+}
+
+nav.mm-menu.mm-basic > .mm-header .mm-prev:before {
+  margin: 0;
+  width: 10px;
+  height: 10px;
+  z-index: 10;
+  border-color: #c4ccda;
+}
+
+nav.mm-menu.mm-basic > .mm-header .mm-next {
+  padding: 0;
+  left: 90%;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  width: auto;
+}
+
+nav.mm-menu.mm-basic > .mm-header .mm-next:before {
+  margin: 0;
+  width: 10px;
+  height: 10px;
+  z-index: 10;
+  border-color: #c4ccda;
+}
+
+nav.mm-menu.mm-basic > .mm-list {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+nav.mm-menu.mm-basic > .mm-list li {
+  border-top: 1px solid #404857;
+  border-bottom: 1px solid #242a37;
+}
+
+nav.mm-menu.mm-basic > .mm-list li > a:not(.mm-subopen):not(.mm-subclose):not(.mm-fullsubopen) {
+  padding: 10px 20px;
+  white-space: normal;
+}
+
+nav.mm-menu.mm-basic > .mm-list li:after {
+  margin-left: 0 !important;
+  border-color: transparent;
+}
+
+nav.mm-menu.mm-basic > .mm-list li.mm-selected > a,
+nav.mm-menu.mm-basic > .mm-list li.mm-selected > span {
+  background: inherit;
+}
+
+nav.mm-menu.mm-basic > .mm-list li.mmenu-expanded .mmenu-block-collapsed {
+  padding: 15px 20px !important;
+  font-size: 1.25em;
+}
+
+nav.mm-menu.mm-basic > .mm-list li.mmenu-expanded .mmenu-block-expanded {
+  padding: 5px 10px 5px 10px !important;
+  /* Old browsers */
+  background: #434b5c;
+  /* FF3.6+ */
+  background: -moz-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* Chrome,Safari4+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #434b5c), color-stop(100%, #394152));
+  /* Chrome10+,Safari5.1+ */
+  background: -webkit-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* IE10+ */
+  background: -ms-linear-gradient(top, #434b5c 0%, #394152 100%);
+  /* W3C */
+  background: linear-gradient(to bottom, #434b5c 0%, #394152 100%);
+  /* IE6-9 */
+  filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='$from', endColorstr='$to',GradientType=0 )";
+}
+
+nav.mm-menu.mm-basic > .mm-list > .mm-list {
+  margin: 0;
+  padding: 0;
+}
+
+nav.mm-menu.mm-basic.mm-hassearch > .mm-header {
+  top: 0;
+}
+
+nav.mm-menu.mm-basic.mm-hassearch > .mm-panel {
+  padding-top: 110px !important;
+}
+
+nav.mm-menu.mm-basic.mm-hassearch > .mm-search {
+  height: 50px;
+  top: 60px;
+  border-bottom: 1px solid #242a37;
+}
+
+nav.mm-menu.mm-basic.mm-hassearch li.mm-noresults {
+  padding: 40px 0;
+  color: #c4ccda;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+
+nav.mm-menu.mm-basic.mm-hasheader > .mm-panel {
+  padding-top: 60px;
+}
+
+nav.mm-menu.mm-basic.mm-hasfooter > .mm-panel {
+  padding-bottom: 40px;
+}
+
+nav.mm-menu.mm-basic em.mm-counter {
+  color: #c4ccda;
+  right: 35px;
+}
+
+nav.mm-menu.mm-basic .mm-subopen,
+nav.mm-menu.mm-basic .mm-subclose {
+  padding-left: 25px;
+}
+
+nav.mm-menu.mm-basic .mm-subopen:before,
+nav.mm-menu.mm-basic .mm-subclose:before {
+  border-left: none;
+}
+
+nav.mm-menu.mm-basic .mm-subopen:after,
+nav.mm-menu.mm-basic .mm-subclose:after {
+  border-color: #c4ccda !important;
+  width: 8px;
+  height: 8px;
+}
+
+nav.mm-menu.mm-basic em.mm-counter + a.mm-subopen + a,
+nav.mm-menu.mm-basic em.mm-counter + a.mm-subopen + span {
+  margin-right: 65px;
+  padding: 10px 20px;
+}
+
+nav.mm-menu.mm-basic.mm-vertical li.mm-opened > ul {
+  padding: 0 0 0 30px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+nav.mm-menu.mm-basic.mm-vertical li.mm-opened > ul li:first-child {
+  border-top: none;
+}
+
+nav.mm-menu.mm-basic.mm-vertical li.mm-opened > ul li:last-child {
+  border-bottom: none;
+}
+
+nav.mm-menu.mm-basic.mm-vertical li.mm-opened > a.mm-subopen {
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: none;
+  width: 40px;
+}
+
+nav.mm-menu.mm-basic > .mm-footer {
+  background: #32394a;
+  color: #c4ccda;
+  padding: 0;
+  font-size: 1.25em;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+nav.mm-menu.mm-basic .search-form {
+  margin-bottom: 0;
+}
+
+nav.mm-menu.mm-basic .search-form .container-inline div,
+nav.mm-menu.mm-basic .search-form .container-inline label {
+  display: block;
+}
+
+nav.mm-menu.mm-basic .search-form .form-item {
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+nav.mm-menu.mm-basic .search-form label {
+  margin-bottom: 10px;
+}
+
+nav.mm-menu.mm-basic .search-form .form-text {
+  padding: 5px 0;
+  width: 100%;
+  border: none;
+}
+
+nav.mm-menu.mm-basic .search-form .form-submit {
+  margin: 0;
+}

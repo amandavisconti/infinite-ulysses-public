@@ -1,0 +1,1306 @@
+<?php
+
+/**
+ * @file
+ * Primarily Drupal hooks and global API functions to manipulate mmenus.
+ */
+
+/**
+ * Implements hook_mmenu().
+ */
+function mmenu_mmenu() {
+  return array(
+    'mmenu_left' => array(
+      'enabled' => TRUE,
+      'name' => 'mmenu_left',
+      'title' => t('Left menu'),
+      'blocks' => array(
+        array(
+          'title' => t('Main menu'),
+          'module' => 'system',
+          'delta' => 'main-menu',
+          'collapsed' => FALSE,
+        ),
+      ),
+      'position' => 'left',
+      'options' => array(
+        'classes' => 'mm-basic',
+        'offCanvas' => array(
+          'enabled' => TRUE,
+          'modal' => FALSE,
+          'moveBackground' => TRUE,
+          'position' => 'left',
+          'zposition' => 'front',
+        ),
+      ),
+      'configurations' => array(),
+    ),
+
+    'mmenu_right' => array(
+      'enabled' => FALSE,
+      'name' => 'mmenu_right',
+      'title' => t('Right menu'),
+      'blocks' => array(
+        array(
+          'title' => t('Search'),
+          'module' => 'mmenu',
+          'delta' => 'search',
+          'collapsed' => FALSE,
+          'wrap' => TRUE,
+        ),
+        array(
+          'title' => t('User menu'),
+          'module' => 'system',
+          'delta' => 'user-menu',
+          'collapsed' => FALSE,
+        ),
+      ),
+      'position' => 'right',
+      'options' => array(
+        'classes' => 'mm-basic',
+      ),
+      'configurations' => array(),
+    ),
+
+    'mmenu_top' => array(
+      'enabled' => FALSE,
+      'name' => 'mmenu_top',
+      'title' => t('Top menu'),
+      'blocks' => array(
+        array(
+          'title' => t('Log in'),
+          'module' => 'user',
+          'delta' => 'login',
+          'collapsed' => FALSE,
+          'wrap' => TRUE,
+        ),
+      ),
+      'position' => 'top',
+      'options' => array(
+        'classes' => 'mm-basic',
+      ),
+      'configurations' => array(),
+    ),
+
+    'mmenu_bottom' => array(
+      'enabled' => FALSE,
+      'name' => 'mmenu_bottom',
+      'title' => t('Bottom menu'),
+      'blocks' => array(
+        array(
+          'title' => t('Management'),
+          'module' => 'system',
+          'delta' => 'management',
+          'collapsed' => FALSE,
+          'menu_parameters' => array(
+            'min_depth' => 2,
+          ),
+        ),
+      ),
+      'position' => 'bottom',
+      'options' => array(
+        'classes' => 'mm-basic',
+      ),
+      'configurations' => array(),
+    ),
+  );
+}
+
+/**
+ * Implements hook_mmenu_theme().
+ */
+function mmenu_mmenu_theme() {
+  $module_path = drupal_get_path('module', 'mmenu');
+  return array(
+    'mm-basic' => array(
+      'name' => 'mm-basic',
+      'title' => t('mm-basic'),
+      'css' => array(
+        $module_path . '/themes/mm-basic/styles/mm-basic.css',
+      ),
+    ),
+    'mm-fresh' => array(
+      'name' => 'mm-fresh',
+      'title' => t('mm-fresh'),
+      'css' => array(
+        $module_path . '/themes/mm-fresh/styles/mm-fresh.css',
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_mmenu_effect().
+ */
+function mmenu_mmenu_effect() {
+  return array(
+    'mm-fullscreen' => array(
+      'name' => 'mm-fullscreen',
+      'title' => t('Makes the menu will fill up 100% of the available width'),
+      'css' => array(),
+    ),
+    'mm-slide' => array(
+      'name' => 'mm-slide',
+      'title' => t('Makes the menu slide in from the side.'),
+      'css' => array(),
+    ),
+    'mm-zoom-menu' => array(
+      'name' => 'mm-zoom-menu',
+      'title' => t('Makes the menu zoom in.'),
+      'css' => array(),
+    ),
+    'mm-zoom-panels' => array(
+      'name' => 'mm-zoom-panels',
+      'title' => t('Makes the panels zoom out while opening a submenu.'),
+      'css' => array(),
+    ),
+  );
+}
+
+/**
+ * Implements hook_mmenu_icon().
+ */
+function mmenu_mmenu_icon() {
+  $icons = array(
+    'path' => array(
+      '<nolink>' => 'icon-plus',
+      '<firstchild>' => 'icon-plus',
+      '<front>' => 'icon-home',
+      'home' => 'icon-home',
+      'about' => 'icon-office',
+      'contact' => 'icon-envelope',
+      'user' => 'icon-profile',
+      'user/login' => 'icon-lock',
+      'user/logout' => 'icon-unlocked',
+      'user/register' => 'icon-signup',
+      'cart' => 'icon-cart',
+      'cart/checkout' => 'icon-money-bag',
+      'admin/dashboard' => 'icon-dashboard',
+      'admin/store' => 'icon-cart',
+      'admin/content' => 'icon-file3',
+      'admin/structure' => 'icon-tree',
+      'admin/appearance' => 'icon-paint-format',
+      'admin/people' => 'icon-users2',
+      'admin/modules' => 'icon-library',
+      'admin/config' => 'icon-settings',
+      'admin/reports' => 'icon-stats',
+      'admin/help' => 'icon-question',
+    ),
+    'block' => array(
+      array(
+        'module' => 'system',
+        'delta' => 'main-menu',
+        'icon_class' => 'icon-enter',
+      ),
+      array(
+        'module' => 'system',
+        'delta' => 'user-menu',
+        'icon_class' => 'icon-enter',
+      ),
+      array(
+        'module' => 'system',
+        'delta' => 'devel',
+        'icon_class' => 'icon-enter',
+      ),
+      array(
+        'module' => 'system',
+        'delta' => 'navigation',
+        'icon_class' => 'icon-enter',
+      ),
+      array(
+        'module' => 'system',
+        'delta' => 'management',
+        'icon_class' => 'icon-enter',
+      ),
+      array(
+        'module' => 'search',
+        'delta' => 'form',
+        'icon_class' => 'icon-search',
+      ),
+      array(
+        'module' => 'mmenu',
+        'delta' => 'search',
+        'icon_class' => 'icon-search',
+      ),
+    ),
+  );
+  return $icons;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function mmenu_menu() {
+  $mmenus = mmenu_list();
+
+  $items['admin/config/mmenu'] = array(
+    'title' => 'Mobile sliding menu',
+    'page callback' => 'mmenu_admin_settings',
+    'access arguments' => array('administer mmenu'),
+    'file' => 'mmenu.admin.inc',
+  );
+
+  $count = 0;
+  foreach ($mmenus as $mmenu) {
+    if ($count == 0) {
+      $items['admin/config/mmenu']['page arguments'] = array($mmenu['name']);
+    }
+    $items['admin/config/mmenu/' . $mmenu['name']] = array(
+      'title' => $mmenu['title'],
+      'page callback' => 'drupal_get_form',
+      'page arguments' => array('mmenu_admin_settings_form', $mmenu['name']),
+      'access arguments' => array('administer mmenu'),
+      'file' => 'mmenu.admin.inc',
+      'type' => MENU_LOCAL_TASK,
+      'weight' => $count++,
+    );
+  }
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mmenu_theme() {
+  $module_path = drupal_get_path('module', 'mmenu');
+  return array(
+    'mmenu' => array(
+      'render element' => 'elements',
+      'template' => 'mmenu',
+      'path' => $module_path . '/tpl',
+    ),
+    'mmenu_tree' => array(
+      'variables' => array(
+        'tree' => NULL,
+        'reset' => FALSE,
+        'depth' => 1,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_permission().
+ */
+function mmenu_permission() {
+  return array(
+    'administer mmenu' => array(
+      'title' => t('Administer mmenu'),
+      'description' => t('Administer mmenu settings.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_libraries_info().
+ */
+function mmenu_libraries_info() {
+  $libraries['mmenu.main'] = array(
+    'name' => 'Mmenu libraries',
+    'vendor url' => 'http://mmenu.frebsite.nl',
+    'download url' => 'http://mmenu.frebsite.nl/download.php',
+    'version arguments' => array(
+      'file' => 'main/src/js/jquery.mmenu.min.js',
+      'pattern' => '/jQuery mmenu v(\d+\.+\d+.+\d+)/',
+      'lines' => 2,
+    ),
+    'files' => array(
+      'js' => array(
+        'src/js/jquery.mmenu.min.all.js',
+      ),
+      'css' => array(
+        'src/css/jquery.mmenu.all.css',
+      ),
+    ),
+    'path' => 'main',
+    'library path' => libraries_get_path('mmenu'),
+  );
+  $libraries['mmenu.hammer'] = array(
+    'name' => 'Hammer libraries',
+    'vendor url' => 'http://eightmedia.github.io/hammer.js',
+    'download url' => 'https://github.com/EightMedia/hammer.js',
+    'version arguments' => array(
+      'file' => 'hammer/hammer.min.js',
+      'pattern' => '/Hammer.JS - v(\d+\.+\d+.+\d+) -/',
+      'lines' => 1,
+    ),
+    'files' => array(
+      'js' => array(
+        'hammer.min.js',
+      ),
+    ),
+    'path' => 'hammer',
+    'library path' => libraries_get_path('mmenu'),
+  );
+  $libraries['mmenu.jquery.hammer'] = array(
+    'name' => 'jQuery plugin for Hammer.js',
+    'vendor url' => 'https://github.com/hammerjs/jquery.hammer.js',
+    'download url' => 'https://github.com/hammerjs/jquery.hammer.js',
+    'version arguments' => array(
+      'file' => 'jquery.hammer/package.json',
+      'pattern' => '/"version": "(\d+\.+\d+.+\d+)"/',
+      'lines' => 3,
+    ),
+    'files' => array(
+      'js' => array(
+        'jquery.hammer.js',
+      ),
+    ),
+    'path' => 'jquery.hammer',
+    'library path' => libraries_get_path('mmenu'),
+  );
+  $libraries['mmenu.icomoon'] = array(
+    'name' => 'Custom Build and Crisp Icon Fonts',
+    'vendor url' => 'https://icomoon.io',
+    'download url' => 'https://icomoon.io/app/#/select',
+    'version' => 'icomoon',
+    'files' => array(
+      'css' => array(
+        'icomoon.css',
+      ),
+    ),
+    'path' => 'icomoon',
+    'library path' => libraries_get_path('mmenu'),
+  );
+  return $libraries;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function mmenu_block_info() {
+  $blocks['search'] = array(
+    'info' => t('Search'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function mmenu_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'search':
+      $block['subject'] = t('Search');
+      $block['content'] = '';
+      if (module_exists('search')) {
+        $search_form = drupal_get_form('search_form');
+        $block['content'] = drupal_render($search_form);
+      }
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Gets a list of available mmenus.
+ *
+ * @param string $mmenu_name
+ *   A mmenu name if you just want to get a particular mmenu.
+ *   Leaves empty if you want to get all available mmenus.
+ *
+ * @return array
+ *   Particular mmenu if the 'mmenu_name' is given.
+ *   All available mmenus otherwise.
+ */
+function mmenu_list($mmenu_name = '') {
+  // Gets mmenus from cache if available.
+  if ($cached = cache_get('mmenus', 'cache')) {
+    $mmenus = $cached->data;
+    // Invoke hook_mmenu_alter().
+    // To allow all modules to alter the mmenus.
+    // Don't save the altered values into cache.
+    drupal_alter('mmenu', $mmenus);
+    if (empty($mmenu_name)) {
+      return $mmenus;
+    }
+    elseif (isset($mmenus[$mmenu_name])) {
+      return $mmenus[$mmenu_name];
+    }
+    else {
+      return array();
+    }
+  }
+
+  // Gets mmenus from hook defined.
+  $mmenus = module_invoke_all('mmenu');
+
+  // Gets the default options and configurations.
+  $default_options = mmenu_get_default_options();
+  $default_configurations = mmenu_get_default_configurations();
+
+  $default_mmenu = array(
+    'enabled' => FALSE,
+    'name' => '',
+    'title' => '',
+    'blocks' => array(),
+    'options' => array(),
+    'configurations' => array(),
+    'custom' => array(),
+  );
+  foreach ($mmenus as $mmenu_key => $mmenu) {
+    $mmenu += $default_mmenu;
+
+    // Merges with the default values.
+    $mmenu['options'] += $default_options;
+    // Merges with the default values.
+    $mmenu['configurations'] += $default_configurations;
+
+    // Takes mmenu settings from user self defined if available.
+    $configurable_mmenu = variable_get('mmenu_item_' . $mmenu['name'], '');
+    if (!empty($configurable_mmenu)) {
+      if (!isset($configurable_mmenu['options'])) {
+        $configurable_mmenu['options'] = array();
+      }
+      if (!isset($configurable_mmenu['configurations'])) {
+        $configurable_mmenu['configurations'] = array();
+      }
+      if (!isset($configurable_mmenu['custom'])) {
+        $configurable_mmenu['custom'] = array();
+      }
+
+      $mmenu = $configurable_mmenu + $mmenu;
+      $mmenu['options'] = $configurable_mmenu['options'] + $mmenu['options'];
+      $mmenu['configurations'] = $configurable_mmenu['configurations'] + $mmenu['configurations'];
+      $mmenu['custom'] = $configurable_mmenu['custom'] + $mmenu['custom'];
+    }
+    $mmenus[$mmenu_key] = $mmenu;
+
+    // Resets blocks values.
+    foreach ($mmenu['blocks'] as $block_key => $block) {
+      $mmenus[$mmenu_key]['blocks'][$block_key]['collapsed'] = isset($block['collapsed']) ? $block['collapsed'] : TRUE;
+      $mmenus[$mmenu_key]['blocks'][$block_key]['wrap'] = isset($block['wrap']) ? $block['wrap'] : FALSE;
+    }
+  }
+
+  // Caches the mmenus.
+  cache_set('mmenus', $mmenus, 'cache');
+  // Invoke hook_mmenu_alter().
+  // To allow all modules to alter the mmenus.
+  // Don't save the altered values into cache.
+  drupal_alter('mmenu', $mmenus);
+
+  if (!empty($mmenu_name)) {
+    if (isset($mmenus[$mmenu_name])) {
+      return $mmenus[$mmenu_name];
+    }
+    else {
+      return array();
+    }
+  }
+  return $mmenus;
+}
+
+/**
+ * Gets a list of available mmenu themes.
+ *
+ * @param string $theme_name
+ *   A class name if you just want to get a particular mmenu theme.
+ *   Leaves empty if you want to get all available mmenu themes.
+ *
+ * @return array
+ *   Particular mmenu theme if the 'theme_name' is given.
+ *   All available mmenu themes otherwise.
+ */
+function mmenu_theme_list($theme_name = '') {
+  // Get mmenu themes from hook.
+  $themes = module_invoke_all('mmenu_theme');
+
+  // Invoke hook_mmenu_theme_alter().
+  // To allow all modules to alter the mmenu themes.
+  drupal_alter('mmenu_theme', $themes);
+
+  if (!empty($theme_name)) {
+    if (isset($themes[$theme_name])) {
+      return $themes[$theme_name];
+    }
+    else {
+      return array();
+    }
+  }
+  return $themes;
+}
+
+/**
+ * Gets a list of available mmenu effects.
+ *
+ * @param string $effect_name
+ *   A effect name if you just want to get a particular mmenu effect.
+ *   Leaves empty if you want to get all available mmenu effects.
+ *
+ * @return array
+ *   Particular mmenu effect if the 'effect_name' is given.
+ *   All available mmenu effects otherwise.
+ */
+function mmenu_effect_list($effect_name = '') {
+  // Get mmenu effects from hook.
+  $effects = module_invoke_all('mmenu_effect');
+
+  // Invoke hook_mmenu_effect_alter().
+  // To allow all modules to alter the mmenu effect.
+  drupal_alter('mmenu_effect', $effects);
+
+  if (!empty($effect_name)) {
+    if (isset($effects[$effect_name])) {
+      return $effects[$effect_name];
+    }
+    else {
+      return array();
+    }
+  }
+  return $effects;
+}
+
+/**
+ * Gets a list of available mmenu icons.
+ *
+ * @return array
+ *   All available mmenu icons.
+ */
+function mmenu_icon_list() {
+  // Get mmenu icons from hook.
+  $icons = module_invoke_all('mmenu_icon');
+  // Invoke hook_mmenu_icon_alter().
+  // To allow all modules to alter the mmenu icon.
+  drupal_alter('mmenu_icon', $icons);
+  return $icons;
+}
+
+/**
+ * Gets default options of the mmenu.
+ *
+ * @return array
+ *   Default mmenu options.
+ */
+function mmenu_get_default_options() {
+  // $logo = theme_get_setting('logo');
+  $site_name = variable_get('site_name', t('Drupal'));
+
+  return array(
+    // A collection of space-separated classnames to add to both the menu
+    // and the HTML.
+    // You'll need this option when using the extensions.
+    'classes' => 'mm-basic',
+    // An array that contains effects classes.
+    'effects' => array(),
+    // A map of the "onClick" options.
+    'onClick' => array(
+      // Whether or not to block the user interface while loading the new page.
+      // The default value varies per link: false if the default behavior for
+      // the clicked link is prevented, true otherwise.
+      'blockUI' => FALSE,
+      // Whether or not the menu should close after clicking a link inside it.
+      // The default value varies per link: true if the default behavior for
+      // the clicked link is prevented, false otherwise.
+      'close' => FALSE,
+      // Whether or not to prevent the default behavior for the clicked link.
+      // The default value varies per link: true if its href is equal to
+      // or starts with a hash (#), false otherwise.
+      'preventDefault' => FALSE,
+      // Whether or not the clicked link should be visibly "selected".
+      'setSelected' => TRUE,
+    ),
+    // Whether or not the submenus should come sliding in from the right.
+    // If false, the submenus expand below their parent.
+    'slidingSubmenus' => TRUE,
+
+    // A map of the buttonbars options.
+    'buttonbars' => array(),
+    // A map of the "counters" options.
+    'counters' => array(
+      // Whether or not to automatically append a counter
+      // to each menu item that has a submenu.
+      'add' => TRUE,
+      // Whether or not to automatically count the number of items
+      // in the submenu, updates when typing in the search field.
+      'update' => TRUE,
+    ),
+    // A map of the "dragOpen" options.
+    'dragOpen' => array(
+      // Whether or not the menu should open when dragging the page.
+      'open' => TRUE,
+      // The node on which the user can drag to open the menu.
+      // If omitted, the entire page is used.
+      'pageNode' => "body",
+      // The minimum amount of pixels to drag before actually opening the menu,
+      // less than 50 is not advised.
+      'threshold' => 100,
+      // The maximum x-position to start dragging the page.For a menu with a
+      // position set to "top" or "bottom", the default value is 50.
+      'maxStartPos' => 50,
+    ),
+    // A map of the fixedElements options.
+    'fixedElements' => array(),
+    // A map of the footer options.
+    'footer' => array(
+      // Whether or not to automatically append a fixed footer to the menu.
+      'add' => TRUE,
+      // The contents of the footer.
+      // If omitted, the "title" option is used.
+      'content' => NULL,
+      // The text of the footer if the submenu has no footer text.
+      'title' => t('Copyright') . ' ©' . date('Y'),
+      // Whether or not to update the title with footer text from each submenu.
+      'update' => TRUE,
+    ),
+    // A map of the header options.
+    'header' => array(
+      // Whether or not to automatically prepend a fixed header to the menu.
+      'add' => TRUE,
+      // The contents of the header.
+      // If omitted, the plugin will add a fully styled and functional header
+      // with a title, back- and next button.
+      'content' => NULL,
+      // The text above the mainmenu.
+      'title' => $site_name,
+      // Whether or not to automatically update the title, back- and
+      // next- button when opening submenus.
+      'update' => TRUE,
+    ),
+    // A map of the "labels" options.
+    'labels' => array(
+      // Whether or not to collapse all subsequent list-items that have the
+      // class name specified in classNames.labels.collapsed
+      // in the configuration object.
+      'collapse' => FALSE,
+    ),
+    // A map of the offCanvas options.
+    'offCanvas' => array(
+      // Whether or not to
+      // Sets to false will disable the (default) offCanvas add-on and
+      // results in an on-canvas menu.
+      'enabled' => TRUE,
+      // Whether or not the menu should be opened as a "modal".
+      // Basically, this means the user has no default way of closing the menu.
+      // You'll have to provide a close-button yourself.
+      'modal' => FALSE,
+      // Whether or not the page should inherit the background of the body
+      // when the menu opens.
+      'moveBackground' => TRUE,
+      // The position of the menu relative to the page.
+      // Possible values: "top", "right", "bottom" or "left".
+      // Note: As of version 4.2 the values "top" and "bottom" will only
+      // work in combination with zposition: "front".
+      'position' => NULL,
+      // The z-position of the menu relative to the page.
+      // Possible values: "back", "front" or "next".
+      'zposition' => 'front',
+    ),
+    // A map of the "search" options.
+    'searchfield' => array(
+      // Whether or not to automatically prepend a search field to the menu.
+      'add' => FALSE,
+      // Where to add the searchfield(s).
+      // Possible values: "menu", "panels" and a valid jQuery selector.
+      'addTo' => 'menu',
+      // Whether or not to automatically search when typing.
+      'search' => FALSE,
+      // The placeholder text in the search field.
+      'placeholder' => t('Search'),
+      // The text to show when no results are found.
+      // If false no message will be shown.
+      'noResults' => t('No results found.'),
+      // Whether or not to only show links (A elements) in the search results.
+      // If false, also SPAN elements will be shown.
+      // Defaults to true if the searchfield.addTo option is set to "menu",
+      // false otherwise.
+      'showLinksOnly' => TRUE,
+    ),
+    // A map of the toggles options.
+    'toggles' => array(),
+  );
+}
+
+/**
+ * Gets default configurations of the mmenu.
+ *
+ * @return array
+ *   Default mmenu configurations.
+ */
+function mmenu_get_default_configurations() {
+  return array(
+    // A map of the classNames options.
+    'classNames' => array(
+      // The classname on a LI that should be displayed as a label.
+      'label' => "Label",
+      // The classname on an element (for example a DIV) that
+      // should be considered to be a panel.
+      // Only applies if the "isMenu" option is set to false.
+      'panel' => "Panel",
+      // The classname on the LI that should be displayed as selected.
+      'selected' => "Selected",
+    ),
+    // jQuery selector containing the node-type of panels.
+    'panelNodetype' => 'div, ul, ol',
+    // The number of milliseconds used in the CSS transitions.
+    'transitionDuration' => 400,
+
+    'classNames' => array(
+      'buttonbars' => array(
+        'buttonbar' => 'anchors',
+      ),
+      'counters' => array(
+        'counter' => 'Counter',
+      ),
+      'dragOpen' => array(),
+      'fixedElements' => array(
+        'fixedTop' => 'FixedTop',
+        'fixedBottom' => 'FixedBottom',
+      ),
+      'footer' => array(
+        'panelFooter' => 'Footer',
+      ),
+      'header' => array(
+        'panelHeader' => 'Header',
+        'panelNext' => 'Next',
+        'panelPrev' => 'Prev',
+      ),
+      'labels' => array(
+        'collapsed' => 'Collapsed',
+      ),
+      'offCanvas' => array(),
+      'searchfield' => array(),
+      'toggles' => array(
+        'toggle' => 'Toggle',
+        'check' => 'Check',
+      ),
+    ),
+    // A map of the buttonbars options.
+    'buttonbars' => array(),
+    // A map of the counter options.
+    'counters' => array(),
+    // A map of the "dragOpen" configuration options.
+    'dragOpen' => array(
+      // A map of the "dragOpen.width" configuration options.
+      'width' => array(
+        // The width of the menu as a percentage.
+        // From 0.0 (fully hidden) to 1.0 (fully opened).
+        'perc' => 0.8,
+        // The minimum width of the menu.
+        'min' => 140,
+        // The maximum width of the menu.
+        'max' => 440,
+      ),
+      // A map of the "dragOpen.height" configuration options.
+      'height' => array(
+        // The height of the menu as a percentage.
+        // From 0.0 (fully hidden) to 1.0 (fully opened).
+        'perc' => 0.8,
+        // The minimum height of the menu.
+        'min' => 140,
+        // The maximum height of the menu.
+        'max' => 880,
+      ),
+    ),
+    // A map of the fixedElements options.
+    'fixedElements' => array(),
+    // A map of the footer options.
+    'footer' => array(),
+    // A map of the header options.
+    'header' => array(),
+    // A map of the labels options.
+    'labels' => array(),
+    // A map of the offCanvas options.
+    'offCanvas' => array(
+      // How to inject the menu to the DOM.
+      // Possible values: "prepend" or "append".
+      'menuInjectMethod' => 'prepend',
+      // jQuery selector for the node the menu should be injected in.
+      'menuWrapperSelector' => 'body',
+      // The node-type of the page.
+      'pageNodetype' => 'div',
+      // jQuery selector for the page.
+      'pageSelector' => 'body > div',
+    ),
+    // A map of the searchfield options.
+    'searchfield' => array(),
+    // A map of the toggles options.
+    'toggles' => array(),
+  );
+}
+
+/**
+ * Generates the mmenu css list and adds to Drupal.
+ *
+ * @param array $mmenu
+ *   An associative array of a mmenu.
+ */
+function mmenu_add_css(array $mmenu) {
+  // Uses custom css if it is set.
+  if (isset($mmenu['custom']['css'])) {
+    foreach ($mmenu['custom']['css'] as $css) {
+      drupal_add_css($css);
+    }
+    return;
+  }
+
+  // Adds mmenu theme styles.
+  if (isset($mmenu['options']['classes'])) {
+    $themes = explode(' ', $mmenu['options']['classes']);
+    foreach ($themes as $theme) {
+      $mmenu_theme = mmenu_theme_list($theme);
+      if (isset($mmenu_theme['css'])) {
+        foreach ($mmenu_theme['css'] as $css) {
+          drupal_add_css($css);
+        }
+      }
+    }
+  }
+
+  // Adds mmenu effect styles.
+  if (isset($mmenu['options']['effects'])) {
+    foreach ($mmenu['options']['effects'] as $k => $v) {
+      $mmenu_effect = mmenu_effect_list($k);
+      if (isset($mmenu_effect['css'])) {
+        foreach ($mmenu_effect['css'] as $css) {
+          drupal_add_css($css);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Generates the mmenu js handler scripts and adds to Drupal.
+ *
+ * @param array $mmenu
+ *   An associative array of a mmenu.
+ */
+function mmenu_add_js(array $mmenu) {
+  // Uses custom js handler if it is set.
+  if (isset($mmenu['custom']['js'])) {
+    foreach ($mmenu['custom']['js'] as $js) {
+      drupal_add_js($js);
+    }
+  }
+  else {
+    $module_path = drupal_get_path('module', 'mmenu');
+    drupal_add_js($module_path . '/js/mmenu.js');
+  }
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function mmenu_page_build(&$page) {
+  /* Amanda: don't show mmenu on admin pages.
+  if (path_is_admin($_GET['q'])) {
+    return;
+  } */
+  // Gets all mmenus markups and adds them to page.
+  $mmenus = mmenu_list();
+  $js_settings = array();
+  foreach ($mmenus as $mmenu) {
+    $name = $mmenu['name'];
+    // Checks if the mmenu was allowed to show.
+    if (mmenu_display_access($mmenu)) {
+      $mmenu['options']['classes'] = mmenu_get_all_classes($mmenu);
+      $page['page_bottom']['mmenu'][$name] = array(
+        '#theme' => 'mmenu',
+        '#mmenu' => $mmenu,
+      );
+      $js_settings[$name] = $mmenu;
+    }
+  }
+  // Outputs the mmenus settings as JSON, then we can do some custom
+  // stuffs in our own JS handlers.
+  if (count($js_settings) > 0) {
+    drupal_add_js(array('mmenu' => $js_settings), 'setting');
+  }
+
+  if (isset($page['page_bottom']['mmenu']) && count($page['page_bottom']['mmenu']) > 0) {
+    // Loads libraries.
+    $page['page_bottom']['mmenu']['#attached']['libraries_load'] = array(
+      'mmenu.hammer' => array('mmenu.hammer'),
+      'mmenu.jquery.hammer' => array('mmenu.jquery.hammer'),
+      'mmenu.main' => array('mmenu.main'),
+      'mmenu.icomoon' => array('mmenu.icomoon'),
+    );
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function mmenu_preprocess_block(&$variables) {
+  if (isset($variables['elements']['#mmenu'])) {
+    // Adds more template suggestions such as
+    // block--search--form--mmenu.tpl.php or
+    // block--search--form--mmenu_mmenu_right.tpl.php
+    $mmenu = $variables['elements']['#mmenu'];
+    $variables['theme_hook_suggestions'][] = 'block__' . $variables['block']->module . '__' . strtr($variables['block']->delta, '-', '_') . '__' . 'mmenu';
+    $variables['theme_hook_suggestions'][] = 'block__' . $variables['block']->module . '__' . strtr($variables['block']->delta, '-', '_') . '__' . 'mmenu_' . $mmenu['name'];
+  }
+}
+
+/**
+ * Processes variables for mmenu.tpl.php.
+ *
+ * Most themes utilize their own copy of mmenu.tpl.php. The default is located
+ * inside "modules/mmenu/tpl/mmenu.tpl.php". Look in there for the full list of
+ * variables.
+ *
+ * The $variables array contains the following arguments:
+ * - $mmenu
+ * - $id
+ * - $name
+ * - $blocks
+ *
+ * @see mmenu.tpl.php
+ */
+function template_preprocess_mmenu(&$variables) {
+  $variables['mmenu'] = $variables['elements']['#mmenu'];
+  $variables['id'] = $variables['elements']['#mmenu']['name'];
+  $variables['name'] = $variables['elements']['#mmenu']['name'];
+  $variables['blocks'] = array();
+  static $mmenu_tree;
+
+  foreach ($variables['mmenu']['blocks'] as $mmenu_block) {
+    // Gets all menu blocks.
+    $system_menus = menu_list_system_menus();
+
+    $block = module_invoke($mmenu_block['module'], 'block_view', $mmenu_block['delta']);
+    // When it is a menu block.
+    if (isset($system_menus[$mmenu_block['delta']])) {
+      // Builds the menu tree for rendering markup.
+      $menu_parameters = isset($mmenu_block['menu_parameters']) ? $mmenu_block['menu_parameters'] : array();
+      $menu_parameters['conditions']['hidden'] = 0;
+
+      // Filters the menu items based on the current language.
+      global $language;
+      if (module_exists('i18n_menu')) {
+        $menu_parameters['conditions']['language'] = array('und', $language->language);
+      }
+
+      if (!isset($mmenu_tree[$mmenu_block['delta']])) {
+        $tree = menu_build_tree($mmenu_block['delta'], $menu_parameters);
+        $mmenu_tree[$mmenu_block['delta']] = $tree;
+      }
+      else {
+        $tree = $mmenu_tree[$mmenu_block['delta']];
+      }
+
+      $block['content'] = theme('mmenu_tree', array(
+        'tree' => $tree,
+        'reset' => TRUE,
+        'depth' => 1,
+      ));
+    }
+    // When it is not a menu block.
+    else {
+      $block_content = _block_render_blocks(array(block_load($mmenu_block['module'], $mmenu_block['delta'])));
+      // Sets title/subject to be empty because we don't need the title/subject
+      // to be displayed in block.tpl.php.
+      $key = $mmenu_block['module'] . '_' . $mmenu_block['delta'];
+      if (isset($block_content[$key])) {
+        $block_content[$key]->title = '';
+        $block_content[$key]->subject = '';
+        $block_build = _block_get_renderable_array($block_content);
+        // Passes the mmenu to the block.tpl.php so you can access it
+        // in the variable $elements['#mmenu'].
+        $block_build[$mmenu_block['module'] . '_' . $mmenu_block['delta']]['#mmenu'] = $variables['elements']['#mmenu'];
+        $block['content'] = render($block_build);
+      }
+      else {
+        $block['content'] = '';
+      }
+    }
+
+    // Uses the mmenu block title if it was defined.
+    // Otherwise, uses default block subject.
+    $subject = '';
+    if ($mmenu_block['title'] == '<none>') {
+      $subject = '';
+    }
+    elseif (!empty($mmenu_block['title'])) {
+      $subject = $mmenu_block['title'];
+    }
+    elseif (isset($block['subject'])) {
+      $subject = $block['subject'];
+    }
+    else {
+      $subject = '';
+    }
+    $new_block['subject'] = $subject;
+    // Renders block content.
+    $new_block['content'] = render($block['content']);
+    // Checks if the block is collapsed or expanded.
+    $new_block['collapsed'] = isset($mmenu_block['collapsed']) ? $mmenu_block['collapsed'] : TRUE;
+    // Checks if the block needs to wrap by
+    // '<ul><li><span>xxxxxx</span></li></ul>'.
+    $new_block['wrap'] = isset($mmenu_block['wrap']) ? $mmenu_block['wrap'] : FALSE;
+    $new_block['module'] = $mmenu_block['module'];
+    $new_block['delta'] = $mmenu_block['delta'];
+    $new_block['icon_class'] = mmenu_get_icon_class('block', array(
+      'module' => $mmenu_block['module'],
+      'delta' => $mmenu_block['delta'],
+    ));
+    // Don't render if block content is empty.
+    if (!empty($new_block['content'])) {
+      $variables['blocks'][] = $new_block;
+    }
+  }
+  // Template suggestions.
+  $variables['theme_hook_suggestions'][] = 'mmenu__' . $variables['name'];
+
+  // Adds CSS for particular mmenu.
+  mmenu_add_css($variables['mmenu']);
+
+  // Adds JS for particular mmenu.
+  mmenu_add_js($variables['mmenu']);
+}
+
+/**
+ * Returns HTML for a wrapper for a mmenu tree.
+ *
+ * @param array $block
+ *   An associative array containing:
+ *   - tree: An array containing the tree's items.
+ *   - reset: An boolean to determine if needs to reset the static variable.
+ *
+ * @ingroup themeable
+ */
+function theme_mmenu_tree(array $block = array(
+  'tree' => array(),
+  'reset' => FALSE,
+  'depth' => 1)) {
+  $tree = $block['tree'];
+  $reset = $block['reset'];
+  $depth = $block['depth'];
+
+  // Don't render if block content is empty.
+  if (count($tree) <= 0) {
+    return '';
+  }
+
+  static $mmenu_output = '';
+  if ($reset) {
+    $mmenu_output = '';
+  }
+  foreach ($tree as $item) {
+    $cur_path = url($_GET['q']);
+    $menu_path = url($item['link']['link_path']);
+    // Adds classes to li in order to do more customization changes.
+    $li_class = array();
+    $li_class[] = 'mmenu-mm-list-mlid-' . $item['link']['mlid'];
+    $my_menu_path = $item['link']['link_path'];
+    $my_menu_path = trim($my_menu_path, '<');
+    $my_menu_path = trim($my_menu_path, '>');
+    $my_menu_path = trim($my_menu_path, '/');
+    $my_menu_path = str_replace('/', '-', $my_menu_path);
+    if (!empty($my_menu_path)) {
+      $li_class[] = 'mmenu-mm-list-path-' . $my_menu_path;
+    }
+    if ($cur_path == $menu_path) {
+      $li_class[] = 'active-trail';
+    }
+    $icon_class = mmenu_get_icon_class('path', $item['link']['link_path']);
+
+    // In order to support the special_menu_items and menu_firstchild modules.
+    $subopen_link_class = '';
+    if (in_array($item['link']['link_path'], array('<nolink>', '<firstchild>'))) {
+      $menu_path = 'javascript:void(0);';
+      $subopen_link_class = 'mmenu-mm-subopen';
+    }
+
+    $mmenu_output .= '<li class="' . implode(' ', $li_class) . '"><a href="'
+      . $menu_path . '" class="mmenu-list ' . $subopen_link_class . '"><i class="'
+      . $icon_class . '"></i><span class="mmenu-block-title">'
+      . $item['link']['link_title']
+      . '</span></a>';
+    if (isset($item['below']) && count($item['below']) > 0) {
+      $mmenu_output .= '<ul class="mmenu-mm-list-level-' . ($depth + 1) . '">';
+      theme('mmenu_tree', array(
+        'tree' => $item['below'],
+        'reset' => FALSE,
+        'depth' => $depth + 1,
+      ));
+      $mmenu_output .= '</ul>';
+    }
+    $mmenu_output .= '</li>';
+  }
+  return '<ul class="mmenu-mm-list-level-' . $depth . '">' . $mmenu_output . '</ul>';
+}
+
+/**
+ * Gets all Drupal blocks for assigning to a mmenu.
+ *
+ * @return array
+ *   An associative array contains all Drupal blocks.
+ */
+function mmenu_get_blocks() {
+  $drupal_modules = module_list();
+  $drupal_blocks = array();
+  foreach ($drupal_modules as $drupal_module) {
+    $array = module_invoke($drupal_module, 'block_info');
+    if (!empty($array)) {
+      $drupal_blocks[$drupal_module] = $array;
+    }
+  }
+  return $drupal_blocks;
+}
+
+/**
+ * Gets the classes values of the combination of the classes and effects.
+ *
+ * @param array $mmenu
+ *   An associative array of the mmenu.
+ *
+ * @return string
+ *   A classes values of the combination of the classes and effects.
+ */
+function mmenu_get_all_classes(array $mmenu) {
+  $classes = array();
+  $classes[] = $mmenu['options']['classes'];
+  if (isset($mmenu['options']['effects'])) {
+    foreach ($mmenu['options']['effects'] as $k => $v) {
+      $classes[] = $k;
+    }
+  }
+  return implode(' ', $classes);
+}
+
+/**
+ * Get the icon class for the given path or block title.
+ *
+ * @param string $type
+ *   The type of the icon. Possible values: path or block.
+ * @param string $value
+ *   The info of the given path or block.
+ *
+ * @return string
+ *   An icon class name.
+ */
+function mmenu_get_icon_class($type = 'path', $value = '') {
+  $icons = mmenu_icon_list();
+  $class = '';
+  switch ($type) {
+    case 'path':
+      $value = trim($value, '/');
+      $class = isset($icons['path'][$value]) ? $icons['path'][$value] : 'icon-list2';
+      break;
+
+    case 'block':
+      foreach ($icons['block'] as $block) {
+        if ($block['module'] == $value['module'] && $block['delta'] == $value['delta']) {
+          return $block['icon_class'];
+        }
+      }
+      $class = 'icon-list2';
+      break;
+  }
+  return $class;
+}
+
+/**
+ * Converts value from PHP to JSON format.
+ *
+ * @param string $type
+ *   The type of the settings such as options or configurations.
+ * @param array $values
+ *   An associative array that contains the mmenu settings.
+ *
+ * @return array
+ *   A converted mmenu settings array.
+ */
+function mmenu_convert_settings($type = 'options', array $values = array()) {
+  foreach ($values as $k => $value) {
+    switch ($k) {
+      case 'offCanvas':
+        if ($type == 'options' && isset($value['enabled']) && $value['enabled'] == 'false') {
+          $value = 'false';
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    if (is_array($value)) {
+      $values[$k] = mmenu_convert_settings($type, $value);
+    }
+    if ($value == 'true') {
+      $values[$k] = TRUE;
+    }
+    elseif ($value == 'false') {
+      $values[$k] = FALSE;
+    }
+    elseif (is_numeric($value)) {
+      $values[$k] = (float) $value;
+    }
+  }
+  return $values;
+}
+
+/**
+ * To check if enables the mmenu.
+ *
+ * First to check the value of enabled variable.
+ *
+ * Second to check the enabled_callback only if the enabled is set to TRUE.
+ *
+ * @param array $mmenu
+ *   An associative array of the mmenu.
+ *
+ * @return bool
+ *   A boolean to determine to show or hide the mmenu.
+ */
+function mmenu_display_access(array $mmenu) {
+  $flag = FALSE;
+  if (isset($mmenu['enabled'])) {
+    // The enabled flag will be higher priority then the enabled_callback flag.
+    if (!$mmenu['enabled']) {
+      return FALSE;
+    }
+// Amanda: only use on content type book
+	$node = menu_get_object($type='node');
+	if ($node->type !== 'book') {
+      return FALSE;	
+    }
+    else {
+      if (isset($mmenu['enabled_callback'])) {
+        return mmenu_check_enabled_callback($mmenu['enabled_callback']);
+      }
+      else {
+        $flag = TRUE;
+      }
+    }
+  }
+  return $flag;
+}
+
+/**
+ * To check if enables the mmenu by the enabled callback functions.
+ *
+ * @param array $enabled_callback
+ *   An associative array of the enabled callback.
+ *
+ * @return bool
+ *   A boolean to determine to show or hide the mmenu.
+ */
+function mmenu_check_enabled_callback(array $enabled_callback) {
+  $flag = TRUE;
+  if (isset($enabled_callback['php']) && count($enabled_callback['php']) > 0) {
+    foreach ($enabled_callback['php'] as $callback) {
+      if (!(function_exists($callback) && call_user_func($callback))) {
+        $flag = FALSE;
+        break;
+      }
+    }
+  }
+  return $flag;
+}
+
+/**
+ * Callback function to determine to enable/disable the mmenu.
+ *
+ * @return bool
+ *   A boolean to determine to enable/disable the mmenu.
+ */
+function mmenu_enabled_callback() {
+  return TRUE;
+}

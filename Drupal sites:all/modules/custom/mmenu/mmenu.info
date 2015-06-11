@@ -1,0 +1,13 @@
+name = Mobile sliding menu
+description = "For creating slick, app look-alike sliding menus for you mobile website with only one line of javascript."
+dependencies[] = jquery_update
+dependencies[] = libraries
+core = 7.x
+configure = admin/config/mmenu
+
+; Information added by Drupal.org packaging script on 2014-09-28
+version = "7.x-2.0"
+core = "7.x"
+project = "mmenu"
+datestamp = "1411911564"
+

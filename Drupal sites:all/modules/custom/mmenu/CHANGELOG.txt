@@ -1,0 +1,53 @@
+Mobile sliding menu 7.x-2.0, 2014-09-28
+---------------------------------------
+- Mmenu module 7.x-2.0 will require Hammer.JS 2.0 or above, mmenu 4.5 or above.
+- Adds hooks so that allow to define mmenu effects such as mm-fullscreen,
+  mm-slide, mm-zoom-menu, and mm-zoom-panels.
+  - hook_mmenu_effect
+  - hook_mmenu_effect_alter
+- Adds hooks:
+  - hook_mmenu_icon
+  - hook_mmenu_icon_alter
+- Renames hook_mmenu_class to hook_mmenu_theme.
+- Renames hook_mmenu_class_alter to hook_mmenu_theme_alter.
+- Adds SCSS file for each theme.
+- Changes to load the Hammer.js from local library instead of remote CDN.
+  See the README.txt to get the installation instructions.
+- Adds the new jQuery plugin library for the Hammer.js.
+  See the README.txt to get the installation instructions.
+- Takes out the icons folder from the module. You need to generate your own
+  icons set to the library directory at /sites/all/libraries/icomoon. And also,
+  you need to copy the style.css and rename it to icomoon.css.
+- Issue #2216485 by tourtools: should only show the menu items that belong to
+  the current active language in a multi-language site.
+- Issue #2194419 by drupalion: supports wide screen.
+- Issue #2327929 by joelstein: supports the Menu Firstchild module.
+- Issue #2217339 by mattcoker: supports the Special menu items module.
+- Issue #2261067 by webadpro: only show the mmenu on specific theme.
+- Issue #2327929 by joelstein: fixes to compatible with the firstchild module.
+- Issue #2217339: fixes to compatible with the special menu items module.
+- Issue #2219277 by joelstein and danilenko_dn: don't display mmenu on some
+  specific paths.
+
+Mobile sliding menu 7.x-1.1, 2014-01-09
+---------------------------------------
+- Adds block template suggestions for rendering mmenu block content.
+  e.g. you can use following templates to re-format the search form content:
+  - block--search--form--mmenu.tpl.php
+  - block--search--form--mmenu_mmenu_left.tpl.php
+  - block--search--form--mmenu_mmenu_right.tpl.php
+- Fixes mm-white styles.
+- Fixes lots of issues.
+
+Mobile sliding menu 7.x-1.0, 2014-01-07
+---------------------------------------
+- Adds hooks:
+  - hook_mmenu
+  - hook_mmenu_alter
+  - hook_mmenu_class
+  - hook_mmenu_class_alter
+- Initial release of Mobile sliding menu module.
+- Mmenu can be positioned at the top, right, bottom or left.
+- Adds an admin page to config Mmenu settings at /admin/config/mmenu.
+- Supports "drag to open" event by using Hammer.js.
+- Supports icomoon styles. See http://icomoon.io.

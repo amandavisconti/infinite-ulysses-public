@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall functions for the mobile sliding menu module.
+ */
+
+/**
+ * Implements hook_uninstall().
+ *
+ * Removes variables on uninstall.
+ */
+function mmenu_uninstall() {
+  db_delete('variable')
+      ->condition('name', "mmenu_%", "LIKE")
+      ->execute();
+  cache_clear_all('variables', 'cache');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function mmenu_requirements($phase) {
+  $t = get_t();
+  $requirements = array();
+
+  switch ($phase) {
+    case 'runtime':
+      $library_main = libraries_detect('mmenu.main');
+      $library_hammer = libraries_detect('mmenu.hammer');
+      $library_jquery_hammer = libraries_detect('mmenu.jquery.hammer');
+
+      $description_installed = $t('To check for newer versions of Mmenu, go to <a href="!url" target="_blank">!url</a>.', array("!url" => $library_main['vendor url']));
+      $description_missing = $t('The Mmenu library was not detected. Please follow the instructions on the <a href="!url" target="_blank">Mmenu project page</a> to install the Mmenu library.', array("!url" => url('http://drupal.org/project/mmenu')));
+      if (!empty($library_main['installed'])) {
+        $requirements['mmenu_main_version'] = array(
+          'title' => $t('Mmenu: Main'),
+          'value' => $library_main['version'],
+          'description' => $description_installed,
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+      else {
+        $requirements['mmenu_main_library'] = array(
+          'title' => $t('Mmenu: Main'),
+          'value' => $t('Missing'),
+          'description' => $description_missing . ' ' . $description_installed,
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+
+      $description_installed = $t('To check for newer versions of Hammer.js, go to <a href="!url" target="_blank">!url</a>.', array("!url" => $library_hammer['vendor url']));
+      $description_missing = $t('The Hammer.js library was not detected. Please follow the instructions on the <a href="!url" target="_blank">Mmenu project page</a> to install the library.', array("!url" => url('http://drupal.org/project/mmenu')));
+      if (!empty($library_hammer['installed'])) {
+        $requirements['mmenu_hammer_version'] = array(
+          'title' => $t('Mmenu: Hammer.js'),
+          'value' => $library_hammer['version'],
+          'description' => $description_installed,
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+      else {
+        $requirements['mmenu_hammer_library'] = array(
+          'title' => $t('Mmenu: Hammer.js'),
+          'value' => $t('Missing'),
+          'description' => $description_missing . ' ' . $description_installed,
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+
+      $description_installed = $t('To check for newer versions of jQuery plugin for Hammer.js, go to <a href="!url" target="_blank">!url</a>.', array("!url" => $library_jquery_hammer['vendor url']));
+      $description_missing = $t('The jQuery plugin for Hammer.js library was not detected. Please follow the instructions on the <a href="!url" target="_blank">Mmenu project page</a> to install the library.', array("!url" => url('http://drupal.org/project/mmenu')));
+      if (!empty($library_jquery_hammer['installed'])) {
+        $requirements['mmenu_jquery_hammer_version'] = array(
+          'title' => $t('Mmenu: jQuery plugin for Hammer.js'),
+          'value' => $library_jquery_hammer['version'],
+          'description' => $description_installed,
+          'severity' => REQUIREMENT_OK,
+        );
+      }
+      else {
+        $requirements['mmenu_jquery_hammer_library'] = array(
+          'title' => $t('Mmenu: jQuery plugin for Hammer.js'),
+          'value' => $t('Missing'),
+          'description' => $description_missing . ' ' . $description_installed,
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+      break;
+  }
+
+  return $requirements;
+}
