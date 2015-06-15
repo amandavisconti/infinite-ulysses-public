@@ -5,9 +5,9 @@ dependencies[] = libraries
 core = 7.x
 configure = admin/config/mmenu
 
-; Information added by Drupal.org packaging script on 2014-09-28
-version = "7.x-2.0"
+; Information added by Drupal.org packaging script on 2015-05-06
+version = "7.x-2.1"
 core = "7.x"
 project = "mmenu"
-datestamp = "1411911564"
+datestamp = "1430935991"
 

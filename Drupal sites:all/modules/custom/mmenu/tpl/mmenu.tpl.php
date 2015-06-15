@@ -18,7 +18,7 @@
  */
 ?>
 
-<nav id="<?php print $id; ?>" class="clearfix">
+<nav id="<?php print $id; ?>" class="mmenu-nav clearfix">
   <ul>
     <?php foreach ($blocks as $k => $block): ?>
       <?php if ($block['collapsed']): ?>

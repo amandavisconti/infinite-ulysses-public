@@ -312,7 +312,7 @@
 		addTo			: 'menu',
 		search			: false,
 //		showLinksOnly	: true,
-		placeholder		: 'Search',
+		placeholder		: 'Search the book & site', // Amanda added text
 		noResults		: 'No results found.'
 	};
 	$[ _PLUGIN_ ].configuration[ _ADDON_ ] = {

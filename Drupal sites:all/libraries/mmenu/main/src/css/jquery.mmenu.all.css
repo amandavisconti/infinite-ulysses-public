@@ -1281,7 +1281,7 @@ html.mm-opened.mm-black .mm-page {
   width: 100%;
   height: 100%;
   position: absolute;
-  right: 0; /* Amanda: changed from left */
+  left: 0; /* Amanda: previously changed from left to right */
   top: 0;
   z-index: 0; }
 

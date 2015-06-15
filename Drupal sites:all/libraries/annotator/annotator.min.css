@@ -70,7 +70,7 @@ display: none !important;
 	border: 0;
 	background: 0;
 	text-indent: -999em;
-	cursor: pointer; cursor: -webkit-grab; cursor: -moz-grab; /* Amanda */
+	cursor: pointer;   /* Amanda */
 }
 /* Amanda: keep for logged-in users */
 .logged-in .annotator-outer
@@ -189,7 +189,7 @@ display: none !important;
 
 .annotator-viewer .annotator-controls button,.annotator-viewer .annotator-controls a
 {
-	cursor: pointer; cursor: -webkit-grab; cursor: -moz-grab; /* Amanda */
+	cursor: pointer;   /* Amanda */
 	display: inline-block;
 	width: 13px;
 	height: 13px;
@@ -213,7 +213,7 @@ display: none !important;
 {
 	top: 0;
 	display: inline;
-	cursor: pointer; cursor: -webkit-grab; cursor: -moz-grab; /* Amanda */
+	cursor: pointer;   /* Amanda */
 	font-size: 12px;
 }
 
@@ -283,7 +283,7 @@ display: none !important;
 	padding: 0;
 	display: inline;
 	margin: 0 4px 0 0;
-	cursor: pointer; cursor: -webkit-grab; cursor: -moz-grab; /* Amanda */
+	cursor: pointer;   /* Amanda */
 }
 
 .annotator-editor .annotator-checkbox { padding: 8px 6px; }

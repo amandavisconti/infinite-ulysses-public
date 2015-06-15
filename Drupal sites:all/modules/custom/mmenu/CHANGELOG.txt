@@ -1,3 +1,13 @@
+Mobile sliding menu 7.x-2.1, 2015-05-06
+---------------------------------------
+- Issue #2329329 by joncjordan: hides the mmenu until document is ready.
+- Issue #2323809 by MissonHxC: supports custom classes that were provided by
+  "Menu Attributes".
+- Issue #2334267: fixes to support both system and non-system menus.
+- Uses hammer.js instead of hammer.min.js to avoid the missing file
+  hammer.min.map issue when compressing the CSS files.
+- By jhayzhon: fixed the mmenu item class name.
+
 Mobile sliding menu 7.x-2.0, 2014-09-28
 ---------------------------------------
 - Mmenu module 7.x-2.0 will require Hammer.JS 2.0 or above, mmenu 4.5 or above.

@@ -320,13 +320,13 @@ function mmenu_libraries_info() {
     'vendor url' => 'http://eightmedia.github.io/hammer.js',
     'download url' => 'https://github.com/EightMedia/hammer.js',
     'version arguments' => array(
-      'file' => 'hammer/hammer.min.js',
+      'file' => 'hammer/hammer.js',
       'pattern' => '/Hammer.JS - v(\d+\.+\d+.+\d+) -/',
       'lines' => 1,
     ),
     'files' => array(
       'js' => array(
-        'hammer.min.js',
+        'hammer.js',
       ),
     ),
     'path' => 'hammer',
@@ -833,7 +833,7 @@ function mmenu_add_css(array $mmenu) {
   // Uses custom css if it is set.
   if (isset($mmenu['custom']['css'])) {
     foreach ($mmenu['custom']['css'] as $css) {
-      drupal_add_css($css);
+      drupal_add_css($css, array('group' => CSS_DEFAULT, 'weight' => 100));
     }
     return;
   }
@@ -845,7 +845,7 @@ function mmenu_add_css(array $mmenu) {
       $mmenu_theme = mmenu_theme_list($theme);
       if (isset($mmenu_theme['css'])) {
         foreach ($mmenu_theme['css'] as $css) {
-          drupal_add_css($css);
+          drupal_add_css($css, array('group' => CSS_DEFAULT, 'weight' => 100));
         }
       }
     }
@@ -857,7 +857,7 @@ function mmenu_add_css(array $mmenu) {
       $mmenu_effect = mmenu_effect_list($k);
       if (isset($mmenu_effect['css'])) {
         foreach ($mmenu_effect['css'] as $css) {
-          drupal_add_css($css);
+          drupal_add_css($css, array('group' => CSS_DEFAULT, 'weight' => 100));
         }
       }
     }
@@ -887,10 +887,6 @@ function mmenu_add_js(array $mmenu) {
  * Implements hook_page_build().
  */
 function mmenu_page_build(&$page) {
-  /* Amanda: don't show mmenu on admin pages.
-  if (path_is_admin($_GET['q'])) {
-    return;
-  } */
   // Gets all mmenus markups and adds them to page.
   $mmenus = mmenu_list();
   $js_settings = array();
@@ -961,7 +957,7 @@ function template_preprocess_mmenu(&$variables) {
 
   foreach ($variables['mmenu']['blocks'] as $mmenu_block) {
     // Gets all menu blocks.
-    $system_menus = menu_list_system_menus();
+    $system_menus = menu_get_menus();
 
     $block = module_invoke($mmenu_block['module'], 'block_view', $mmenu_block['delta']);
     // When it is a menu block.
@@ -1083,7 +1079,7 @@ function theme_mmenu_tree(array $block = array(
   }
   foreach ($tree as $item) {
     $cur_path = url($_GET['q']);
-    $menu_path = url($item['link']['link_path']);
+    $menu_path = check_url(url($item['link']['link_path']));
     // Adds classes to li in order to do more customization changes.
     $li_class = array();
     $li_class[] = 'mmenu-mm-list-mlid-' . $item['link']['mlid'];
@@ -1093,10 +1089,15 @@ function theme_mmenu_tree(array $block = array(
     $my_menu_path = trim($my_menu_path, '/');
     $my_menu_path = str_replace('/', '-', $my_menu_path);
     if (!empty($my_menu_path)) {
-      $li_class[] = 'mmenu-mm-list-path-' . $my_menu_path;
+      $li_class[] = 'mmenu-mm-list-path-' . check_plain($my_menu_path);
     }
     if ($cur_path == $menu_path) {
       $li_class[] = 'active-trail';
+    }
+    // Gets the classes from the menu attributes.
+    if (isset($item['link']['options']['attributes']['class'])
+      && count($item['link']['options']['attributes']['class']) > 0) {
+      $li_class = array_merge($li_class, $item['link']['options']['attributes']['class']);
     }
     $icon_class = mmenu_get_icon_class('path', $item['link']['link_path']);
 
@@ -1108,7 +1109,7 @@ function theme_mmenu_tree(array $block = array(
     }
 
     $mmenu_output .= '<li class="' . implode(' ', $li_class) . '"><a href="'
-      . $menu_path . '" class="mmenu-list ' . $subopen_link_class . '"><i class="'
+      . $menu_path . '" class="mmenu-mm-list ' . $subopen_link_class . '"><i class="'
       . $icon_class . '"></i><span class="mmenu-block-title">'
       . $item['link']['link_title']
       . '</span></a>';

@@ -65,8 +65,12 @@ body {
 }
 
 /* Menu nav */
-nav.mm-menu.mm-fresh {
-  z-index: 1000;
+.mmenu-nav:not(.mm-menu) {
+  display: none;
+}
+
+.mmenu-nav.mm-fresh {
+  z-index: 1;
   background: $nav_bg;
   color: $nav_color;
   text-shadow: 0 1px 0 rgba(0, 0, 0, .6);
