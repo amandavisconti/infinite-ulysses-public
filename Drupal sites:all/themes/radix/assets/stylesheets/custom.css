@@ -4,6 +4,10 @@ body {
 font-family: 'Open Sans', sans-serif;
 }
 
+.node-type-book #footer .container {
+display: none;
+}
+
 .view-my-bookmarks-view .view-empty {
 background: #555555;
 color: #FFFFFF;
@@ -14,16 +18,145 @@ padding: 10px;
 font-family: 'Merriweather', serif;
 }
 
+.front #page-header {
+display: none;
+}
+
 #annoclicker {
 position: relative;
+margin-left: 300px;
 }  
   
 #annoclicker:before {
 position: absolute;
-z-index: 100;
+z-index: 1100;
 font-family: FontAwesome;
 top: 0;
 left: 300px;
 font-size: 3em;
 content: "\f086";
 }
+
+/* Shrink from covering/making unclickable rest of page into a close button */
+#mm-blocker {
+     background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% ! important;
+     height: 35px ! important;
+     left: 20px;
+     opacity: 1;
+     top: 45px;
+     width: 35px ! important;
+     position: absolute;
+     z-index: 2 !important;
+}
+
+#mm-blocker:before {
+     color: #428bca;
+     content: "";
+     font-family: FontAwesome;
+     font-size: 2em;
+     position: absolute;
+     z-index: 3 !important;
+}
+
+.mmenu-nav.mm-fresh > .mm-list {
+margin: 0px !important;
+padding: 0px !important;
+}
+
+.node-type-book .pane-node-title .pane-content {
+     color: #ffffff;
+     font-size: 1.5em;
+     margin-left: 249.5px ! important;
+     margin-top: -35px ! important;
+     position: absolute;
+     z-index: 1;
+}
+
+.node-book .flag-outer {
+     font-size: 4em;
+     left: 680px;
+     position: absolute;
+     top: -20px;
+     z-index: 0;
+}
+
+.node-type-blog .links {
+display: none;
+}
+
+.front .col-md-4 .jumbotron {
+min-height: 234px;    
+}
+
+.front .col-md-4 .panel-body {
+min-height: 210px;
+}
+
+.front .radix-layouts-footercolumn1 .panel-body, .front .radix-layouts-footercolumn2 .panel-body, .front .radix-layouts-footercolumn3 .panel-body {
+ min-height: 360px; 
+}
+
+.front .radix-layouts-column3 .pane-3 {
+text-align: center;
+}
+
+#header .container {
+width: 100%;
+padding-left: 0px !important;
+padding-right: 0px !important;
+}
+
+.block-search input[type="submit"] {
+     border: 0px none;
+     font-family: "FontAwesome";
+     font-size: 1em;
+}
+
+.node-type-faq .field-name-field-detailed-question{
+display: none;
+}
+
+body:not(.node-type-book) .author, .node-type-book .col-md-12 .author {
+display: none;
+}
+
+.submitted {
+font-style: italic;
+padding-top: 10px;
+text-align: right;
+}
+
+.submitted:before {
+content: "Last updated:";
+}
+
+.node-type-page .pane-title {
+display: none;
+}
+
+.caption {
+font-style: italic;
+}
+
+.faq-question span {
+     border-bottom: 1px solid #cccccc;
+     font-size: 1.5em;
+}
+
+.page-faq-page .links {
+text-align: right; 
+}
+
+/* Widescreen always shows expanded annotation drawer */
+@media (min-width: 1000px) {
+  .container { width: 970px; }
+  .mm-slideout { transform: none ! important; }
+  .mm-menu { width: 42% ! important; max-width: none ! important; z-index: 0; top: 52px ! important; right: auto ! important; bottom: auto ! important; left: 0px ! important; }
+  .mm-menu:first-child, .mm-menu.mm-current { display: block; }
+  .mm-menu.mm-front, .mm-menu.mm-next { transform: none ! important; }
+  #annoclicker { display: none; }
+  .node-type-book p { width: 540px; padding: 20px 12px 10px 14px; margin-left: -15px; }
+  .node-type-book .col-md-12 { padding-left: 30% ! important; }
+  .node-type-book .col-md-12 .panel-pane { width: 510px; float: right ! important; }
+  .form-item-search-block-form input { width: 300px ! important; margin-left: -5px; margin-right: 5px; }
+} /* End media query */

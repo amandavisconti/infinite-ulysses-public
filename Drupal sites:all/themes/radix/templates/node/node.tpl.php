@@ -21,11 +21,10 @@
   <?php endif; ?>
   <?php print render($title_suffix); ?>
 
-  <?php if ($display_submitted): ?>
-    <div class="submitted">
-      <?php print $submitted; ?>
+    <div class="author">
+  	    <?php print $name; ?> 
     </div>
-  <?php endif; ?>
+
 
   <div class="content"<?php print $content_attributes; ?>>
     <?php
@@ -36,8 +35,10 @@
     ?>
   </div>
 
+  <div class="metadata">
   <?php print render($content['links']); ?>
-
   <?php print render($content['comments']); ?>
-
-</article>
+  <div class="submitted">
+    <?php print $submitted; ?>
+  </div></article>
+</div>

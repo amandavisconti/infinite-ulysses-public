@@ -137,7 +137,7 @@ function radix_preprocess_page(&$variables) {
       );
     }
   }
-
+/*
   // Add search_form to theme.
   $variables['search_form'] = '';
   if (module_exists('search') && user_access('search content')) {
@@ -153,7 +153,7 @@ function radix_preprocess_page(&$variables) {
     $search_box = drupal_render($search_box_form);
     $variables['search_form'] = (user_access('search content')) ? $search_box : NULL;
   }
-
+*/  
   // Format and add main menu to theme.
   $variables['user_menu'] = menu_tree(variable_get('menu_user_links_source', 'user-menu'));
   $variables['user_menu']['#theme_wrappers'] = array();
@@ -184,3 +184,20 @@ function radix_preprocess_flag(&$vars) {
   }
   $vars['link_text'] = "<span class='fa $state'></span>";
 }
+
+/* Different date format */
+function radix_preprocess_node(&$vars, $hook) {
+	$vars['submitted'] = date("M jS, Y", $vars['created']);
+}
+
+/* Change text of search button */
+function radix_form_alter(&$form, &$form_state, $form_id) {
+if ($form_id == 'search_block_form') {
+    $form['actions']['submit']['#value'] = decode_entities('&#xf002;');
+    // Add extra attributes to the text box
+    $form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = 'Search';}";
+    $form['search_block_form']['#attributes']['onfocus'] = "if (this.value == 'Search') {this.value = '';}";
+    // Alternative (HTML5) placeholder attribute instead of using the javascript
+    $form['search_block_form']['#attributes']['placeholder'] = t('Search book and site');
+  }
+} 
