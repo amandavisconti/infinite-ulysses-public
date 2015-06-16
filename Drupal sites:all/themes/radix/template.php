@@ -118,6 +118,12 @@ function radix_js_alter(&$javascript) {
  * Implements template_preprocess_page().
  */
 function radix_preprocess_page(&$variables) {
+
+/* Let my theme override page.tpl.php's for specific node types */
+  if (isset($variables['node'])) {
+    $variables['theme_hook_suggestions'][] = 'page__node_' . $variables['node']->type;    
+  }
+
   // Determine if the page is rendered using panels.
   $variables['is_panel'] = FALSE;
   if (module_exists('page_manager') && count(page_manager_get_current_page())) {

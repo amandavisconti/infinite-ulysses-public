@@ -24,7 +24,7 @@ display: none;
 
 #annoclicker {
 position: relative;
-margin-left: 300px;
+margin-left: 40px;
 }  
   
 #annoclicker:before {
@@ -35,6 +35,7 @@ top: 0;
 left: 300px;
 font-size: 3em;
 content: "\f086";
+color: #428bca;
 }
 
 /* Shrink from covering/making unclickable rest of page into a close button */
@@ -72,9 +73,9 @@ padding: 0px !important;
      z-index: 1;
 }
 
-.node-book .flag-outer {
+.col-md-12 .flag-my-bookmarks {
      font-size: 4em;
-     left: 680px;
+     left: 380px;
      position: absolute;
      top: -20px;
      z-index: 0;
@@ -82,22 +83,6 @@ padding: 0px !important;
 
 .node-type-blog .links {
 display: none;
-}
-
-.front .col-md-4 .jumbotron {
-min-height: 234px;    
-}
-
-.front .col-md-4 .panel-body {
-min-height: 210px;
-}
-
-.front .radix-layouts-footercolumn1 .panel-body, .front .radix-layouts-footercolumn2 .panel-body, .front .radix-layouts-footercolumn3 .panel-body {
- min-height: 360px; 
-}
-
-.front .radix-layouts-column3 .pane-3 {
-text-align: center;
 }
 
 #header .container {
@@ -126,6 +111,10 @@ padding-top: 10px;
 text-align: right;
 }
 
+.node-type-book .col-md-12 .metadata, .node-type-book .nav-tabs, .node-type-book .col-md-12 .username {
+display: none !important;  
+}
+
 .submitted:before {
 content: "Last updated:";
 }
@@ -147,16 +136,97 @@ font-style: italic;
 text-align: right; 
 }
 
-/* Widescreen always shows expanded annotation drawer */
-@media (min-width: 1000px) {
-  .container { width: 970px; }
+.view-annosidebar .view-filters {
+display: none;
+}
+
+/* Widescreen CSS for Webkit */
+@media (min-width: 1000px) and (-webkit-min-device-pixel-ratio:0) {
+.mm-menu {
+margin-top: 20px ! important; 
+}
+}
+/* End */
+
+/* Default widescreen CSS (drawer expanded by default) */
+@media (min-width: 900px) {
+  .container { width: 550px; }
   .mm-slideout { transform: none ! important; }
-  .mm-menu { width: 42% ! important; max-width: none ! important; z-index: 0; top: 52px ! important; right: auto ! important; bottom: auto ! important; left: 0px ! important; }
+  .mm-menu { width: 32% ! important; max-width: none ! important; z-index: 0; top: 72px ! important; right: auto ! important; bottom: auto ! important; left: 0px ! important; }
   .mm-menu:first-child, .mm-menu.mm-current { display: block; }
   .mm-menu.mm-front, .mm-menu.mm-next { transform: none ! important; }
   #annoclicker { display: none; }
   .node-type-book p { width: 540px; padding: 20px 12px 10px 14px; margin-left: -15px; }
-  .node-type-book .col-md-12 { padding-left: 30% ! important; }
-  .node-type-book .col-md-12 .panel-pane { width: 510px; float: right ! important; }
-  .form-item-search-block-form input { width: 300px ! important; margin-left: -5px; margin-right: 5px; }
+  .node-type-book .col-md-12 .panel-pane { width: 510px; float: right ! important; margin-right: -120px;}
+  .form-item-search-block-form input { width: 190px ! important; margin-left: -5px; margin-right: 5px; }
 } /* End media query */
+
+
+.mmenu-nav.mm-fresh {
+text-shadow: none !important;
+}
+
+.mm-menu {
+    max-width: 440px;
+    min-width: 140px;
+    width: 80%;
+}
+
+.mm-list > li > a, .mm-list > li > span {
+white-space: normal !important;
+}
+
+.author:before {
+content: 'By '; 
+}
+
+.node-annotation h2 {
+font-size: 1em; 
+}
+
+.field-name-uri .field-label {
+ display: none; 
+}
+
+.field-name-uri .field-item:before {
+content: 'On Ulysses Page ';
+}
+
+.field-name-text .field-label {
+display: none; 
+}
+
+.field-name-quote .field-label {
+float: left;
+}
+
+.field-type-text-long {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    margin: 0px -10px 20px -20px;
+padding: 10px;
+}
+
+.ctools-collapsible-handle {
+background: #428bca;
+color: #FFFFFF;
+border: 1px solid transparent;
+border-radius: 4px;
+cursor: pointer;
+padding: 6px 12px;
+text-align: center;
+vertical-align: middle;
+width: 75px;
+}
+
+.ctools-collapsible-handle:after {
+font-family: "FontAwesome";
+content: "\f13a";
+margin-left: 5px;
+color: #FFFFFF;
+}
+
+.node-type-book .ctools-toggle {
+display: none; 
+}
