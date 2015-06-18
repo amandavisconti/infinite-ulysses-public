@@ -4,8 +4,10 @@ body {
 font-family: 'Open Sans', sans-serif;
 }
 
-.node-type-book #footer .container {
-display: none;
+#header .container {
+width: 100%;
+padding-left: 0px !important;
+padding-right: 0px !important;
 }
 
 .view-my-bookmarks-view .view-empty {
@@ -14,12 +16,64 @@ color: #FFFFFF;
 padding: 10px;
 }
 
-.node-book p {
-font-family: 'Merriweather', serif;
+
+.node-type-blog .links {
+display: none;
 }
 
+.node-type-faq .field-name-field-detailed-question, body:not(.node-type-book) .author, .node-type-book .col-md-12 .author, .node-type-book .col-md-12 .metadata, .node-type-book .nav-tabs, .node-type-book .col-md-12 .username, .node-type-page .pane-title {
+display: none !important;
+}
+
+.submitted {
+font-style: italic;
+padding-top: 10px;
+text-align: right;
+}
+
+.submitted:before {
+content: "Last updated:";
+}
+
+.caption {
+font-style: italic;
+}
+
+.faq-question span {
+border-bottom: 1px solid #cccccc;
+font-size: 1.5em;
+}
+
+.page-faq-page .links {
+text-align: right; 
+}
+
+/***********************/
+/***********************/
+/* Front Page Business */
 .front #page-header {
 display: none;
+}
+
+/* End Front Page Business */
+/***********************/
+/***********************/
+/* Book Page Business */
+/* General */
+
+/* Text portion */
+
+/* Annosidebar drawer */
+.mmenu-nav.mm-fresh {
+text-shadow: none !important;
+}
+
+.node-type-book #footer .container {
+display: none;
+}
+
+.node-book p {
+font-family: 'Merriweather', serif;
 }
 
 #annoclicker {
@@ -38,7 +92,6 @@ content: "\f086";
 color: #428bca;
 }
 
-/* Shrink from covering/making unclickable rest of page into a close button */
 #mm-blocker {
      background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% ! important;
      height: 35px ! important;
@@ -81,131 +134,14 @@ padding: 0px !important;
      z-index: 0;
 }
 
-.node-type-blog .links {
-display: none;
-}
-
-#header .container {
-width: 100%;
-padding-left: 0px !important;
-padding-right: 0px !important;
-}
-
 .block-search input[type="submit"] {
-     border: 0px none;
-     font-family: "FontAwesome";
-     font-size: 1em;
-}
-
-.node-type-faq .field-name-field-detailed-question{
-display: none;
-}
-
-body:not(.node-type-book) .author, .node-type-book .col-md-12 .author {
-display: none;
-}
-
-.submitted {
-font-style: italic;
-padding-top: 10px;
-text-align: right;
-}
-
-.node-type-book .col-md-12 .metadata, .node-type-book .nav-tabs, .node-type-book .col-md-12 .username {
-display: none !important;  
-}
-
-.submitted:before {
-content: "Last updated:";
-}
-
-.node-type-page .pane-title {
-display: none;
-}
-
-.caption {
-font-style: italic;
-}
-
-.faq-question span {
-     border-bottom: 1px solid #cccccc;
-     font-size: 1.5em;
-}
-
-.page-faq-page .links {
-text-align: right; 
+border: 0px none;
+font-family: "FontAwesome";
+font-size: 1em;
 }
 
 .view-annosidebar .view-filters {
 display: none;
-}
-
-/* Widescreen CSS for Webkit */
-@media (min-width: 1000px) and (-webkit-min-device-pixel-ratio:0) {
-.mm-menu {
-margin-top: 20px ! important; 
-}
-}
-/* End */
-
-/* Default widescreen CSS (drawer expanded by default) */
-@media (min-width: 900px) {
-  .container { width: 550px; }
-  .mm-slideout { transform: none ! important; }
-  .mm-menu { width: 32% ! important; max-width: none ! important; z-index: 0; top: 72px ! important; right: auto ! important; bottom: auto ! important; left: 0px ! important; }
-  .mm-menu:first-child, .mm-menu.mm-current { display: block; }
-  .mm-menu.mm-front, .mm-menu.mm-next { transform: none ! important; }
-  #annoclicker { display: none; }
-  .node-type-book p { width: 540px; padding: 20px 12px 10px 14px; margin-left: -15px; }
-  .node-type-book .col-md-12 .panel-pane { width: 510px; float: right ! important; margin-right: -120px;}
-  .form-item-search-block-form input { width: 190px ! important; margin-left: -5px; margin-right: 5px; }
-} /* End media query */
-
-
-.mmenu-nav.mm-fresh {
-text-shadow: none !important;
-}
-
-.mm-menu {
-    max-width: 440px;
-    min-width: 140px;
-    width: 80%;
-}
-
-.mm-list > li > a, .mm-list > li > span {
-white-space: normal !important;
-}
-
-.author:before {
-content: 'By '; 
-}
-
-.node-annotation h2 {
-font-size: 1em; 
-}
-
-.field-name-uri .field-label {
- display: none; 
-}
-
-.field-name-uri .field-item:before {
-content: 'On Ulysses Page ';
-}
-
-.field-name-text .field-label {
-display: none; 
-}
-
-.field-name-quote .field-label {
-float: left;
-}
-
-.field-type-text-long {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    margin: 0px -10px 20px -20px;
-padding: 10px;
 }
 
 .ctools-collapsible-handle {
@@ -230,3 +166,101 @@ color: #FFFFFF;
 .node-type-book .ctools-toggle {
 display: none; 
 }
+
+.mm-list > li > a, .mm-list > li > span {
+white-space: normal !important;
+}
+
+.author:before {
+content: 'By '; 
+}
+
+.field-name-uri .field-label, .field-name-text .field-label, .field-name-quote .field-label {
+display: none; 
+}
+
+.field-name-uri .field-item:before {
+content: 'On Ulysses Page ';
+}
+
+.mm-menu {
+max-width: 440px;
+min-width: 140px;
+width: 80%;
+}
+
+.field-type-text-long {
+background-color: #fff;
+border: 1px solid #ddd;
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+margin: 0px -10px 20px -20px;
+padding: 10px;
+}
+
+/* End Book Page Business */
+/*****************************/
+/*****************************/
+/* Widescreen CSS for Webkit */
+@media (min-width: 1000px) and (-webkit-min-device-pixel-ratio:0) {
+.mm-menu {
+margin-top: 20px ! important; 
+}
+}
+/* End Widescreen CSS for Webkit */
+/*****************************/
+/*****************************/
+/* Widescreen CSS */
+@media (min-width: 900px) {
+.node-type-book .container { 
+width: 550px; 
+}
+
+.mm-slideout, .mm-menu.mm-front, .mm-menu.mm-next { 
+transform: none !important; 
+}
+
+.mm-menu {
+width: 32% !important;
+max-width: none !important;
+z-index: 0;
+top: 72px !important;
+right: auto !important;
+bottom: auto !important;
+left: 0px !important;
+}
+
+.mm-menu:first-child, .mm-menu.mm-current { 
+display: block; 
+}
+
+#annoclicker { display: none; }
+
+.node-type-book p {
+width: 540px;
+padding: 20px 12px 10px 14px;
+margin-left: -15px;
+}
+
+.node-type-book .col-md-12 .panel-pane {
+width: 510px;
+float: right !important;
+margin-right: -120px;
+}
+
+.node-type-book .form-item-search-block-form input {
+width: 190px !important;
+margin-left: -5px;
+margin-right: 5px;
+}
+
+} 
+/* End Widescreen CSS */
+/*****************************/
+/*****************************/
+/*****************************/
+/*****************************/
+/* Testing */
+
+
+
+
