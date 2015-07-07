@@ -2,6 +2,7 @@
 
 body {
 font-family: 'Open Sans', sans-serif;
+color: #555555;
 }
 
 #header .container {
@@ -15,7 +16,6 @@ background: #555555;
 color: #FFFFFF;
 padding: 10px;
 }
-
 
 .node-type-blog .links {
 display: none;
@@ -40,12 +40,15 @@ font-style: italic;
 }
 
 .faq-question span {
-border-bottom: 1px solid #cccccc;
 font-size: 1.5em;
 }
 
 .page-faq-page .links {
 text-align: right; 
+}
+
+.field-name-field-detailed-question {
+display: none !important; 
 }
 
 /***********************/
@@ -55,6 +58,107 @@ text-align: right;
 display: none;
 }
 
+body:not(.node-type-book) {
+background: url("http://localhost:8080/www.infiniteulysses.com/sites/all/themes/radix/images/site/ricepaper2.png") repeat;
+}
+
+.front .radix-layouts-header, .front .radix-layouts-footer  {
+text-align: center;  
+}
+
+.front h1 {
+font-family: 'Lato', sans-serif; 
+font-size: 5em;
+padding-top: 5px; 
+}
+
+.front h4 {
+font-family: 'Lato', sans-serif;  
+}
+
+.front .radix-layouts-header .panel-panel-inner p {
+padding-top: 30px; 
+font-size: 2em;
+color: #777777; 
+}
+
+.front .col-md-6 {
+padding-bottom: 30px;
+line-height: 1.6em;
+}
+
+.front .radix-layouts-footercolumn1 .pane-title, .front .radix-layouts-footercolumn2 .pane-title {
+margin-top: 0px;
+}
+
+.front .radix-layouts-footercolumn1 .panel-body, .front .radix-layouts-footercolumn3 .panel-body {
+height: 340px;
+}
+
+.front .radix-layouts-footercolumn3 .panel-body p {
+padding-bottom: 6px;  
+}
+
+.front .view-latest-news .views-field-title {
+float: left; 
+}
+
+.front .view-latest-news .views-field-title:after {
+content: ":";
+padding-right: .3em;
+margin-left: -.2em;
+}
+
+.front .button-container {
+padding-top: 30px; 
+padding-bottom: 30px;
+}
+
+.front .btn {
+  display: block;
+  height: 65px;
+  width: 186px;
+  position: relative;
+  margin: 0px auto;
+  overflow: hidden;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
+  border-radius: 0px !important;
+  font-family: 'Lato', sans-serif; 
+}
+.front .btn:hover {
+   color: #FFFFFF; 
+}
+.front .btn:after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  background: #3bade3;
+  background: -webkit-linear-gradient(45deg, #3bade3 0%, #576fe6 25%, #9844b7 51%, #ff357f 100%);
+  background: linear-gradient(45deg, #3bade3 0%, #576fe6 25%, #9844b7 51%, #ff357f 100%);
+  height: 60px;
+  width: 372px;
+  z-index: -1;
+  -webkit-transform: translateX(-280px);
+      -ms-transform: translateX(-280px);
+          transform: translateX(-280px);
+  -webkit-transition: -webkit-transform 400ms ease-in;
+          transition: transform 400ms ease-in;
+}
+.front .btn:hover:after {
+  -webkit-transform: translateX(-200px);
+      -ms-transform: translateX(-200px);
+          transform: translateX(-200px);
+}
+.front .btn span {
+  position: relative;
+  top: 16px;
+}
+
 /* End Front Page Business */
 /***********************/
 /***********************/
@@ -62,31 +166,24 @@ display: none;
 /* General */
 
 /* Text portion */
-
-/* Annosidebar drawer */
-.mmenu-nav.mm-fresh {
-text-shadow: none !important;
-}
-
 .node-type-book #footer .container {
 display: none;
 }
 
-.node-book p {
+.node-type-book .col-md-12 p {
 font-family: 'Merriweather', serif;
 }
 
 #annoclicker {
-position: relative;
-margin-left: 40px;
+
 }  
   
 #annoclicker:before {
 position: absolute;
 z-index: 1100;
 font-family: FontAwesome;
-top: 0;
-left: 300px;
+top: -12px;
+left: 200px;
 font-size: 3em;
 content: "\f086";
 color: #428bca;
@@ -112,26 +209,36 @@ color: #428bca;
      z-index: 3 !important;
 }
 
-.mmenu-nav.mm-fresh > .mm-list {
-margin: 0px !important;
-padding: 0px !important;
-}
-
 .node-type-book .pane-node-title .pane-content {
-     color: #ffffff;
      font-size: 1.5em;
      margin-left: 249.5px ! important;
-     margin-top: -35px ! important;
+     margin-top: -34px ! important;
      position: absolute;
      z-index: 1;
 }
 
+.bottom-pg {
+margin-left: 145px ! important;
+margin-top: 672px ! important;
+z-index: 1;
+}
+
 .col-md-12 .flag-my-bookmarks {
      font-size: 4em;
-     left: 380px;
+     left: 340px;
      position: absolute;
      top: -20px;
      z-index: 0;
+}
+
+/* Annosidebar drawer */
+.mmenu-nav.mm-fresh {
+text-shadow: none !important;
+}
+
+.mmenu-nav.mm-fresh > .mm-list {
+margin: 0px !important;
+padding: 0px !important;
 }
 
 .block-search input[type="submit"] {
@@ -233,7 +340,17 @@ left: 0px !important;
 display: block; 
 }
 
-#annoclicker { display: none; }
+#annoclicker:before {
+position: absolute;
+z-index: 1100;
+font-family: FontAwesome;
+top: -22px;
+left: 418px;
+font-size: 4em;
+content: "\f086";
+color: #CCCCCC;
+cursor: not-allowed;
+}
 
 .node-type-book p {
 width: 540px;
@@ -260,7 +377,3 @@ margin-right: 5px;
 /*****************************/
 /*****************************/
 /* Testing */
-
-
-
-

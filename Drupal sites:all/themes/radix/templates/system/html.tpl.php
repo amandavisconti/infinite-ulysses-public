@@ -47,7 +47,7 @@
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
-  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,400italic|Open+Sans:400,700|Lato:700,700italic' rel='stylesheet' type='text/css'>
   <?php print $scripts; ?>
   <!--[if lt IE 9]>
    <script>
