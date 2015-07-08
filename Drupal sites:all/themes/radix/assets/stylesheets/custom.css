@@ -1,8 +1,24 @@
 /* Custom styling for the Radix theme by Amanda Visconti */
+/* Color spectrum:
+#66E8C8
+#55B2A2 hover
+#447B7D link
+#334557
+#220E31
+*/
 
 body {
 font-family: 'Open Sans', sans-serif;
 color: #555555;
+}
+
+#main a {
+color: #447B7D; 
+font-weight: bold;
+}
+
+#main a:hover {
+color: #55B2A2;  
 }
 
 #header .container {
@@ -11,17 +27,34 @@ padding-left: 0px !important;
 padding-right: 0px !important;
 }
 
+#header input:focus {
+/* other CSS styles */
+border: none !important;
+ -webkit-box-shadow: 0px 0px 4px #447B7D !important;
+       -moz-box-shadow: 0px 0px 4px #447B7D !important;
+            box-shadow: 0px 0px 4px #447B7D !important;
+}
+
 .view-my-bookmarks-view .view-empty {
 background: #555555;
 color: #FFFFFF;
 padding: 10px;
 }
 
+.node-type-webform #main {
+width: 970px;
+margin: 0px auto;
+}
+
+.node-type-webform #content .username {
+display: none;
+}
+
 .node-type-blog .links {
 display: none;
 }
 
-.node-type-faq .field-name-field-detailed-question, body:not(.node-type-book) .author, .node-type-book .col-md-12 .author, .node-type-book .col-md-12 .metadata, .node-type-book .nav-tabs, .node-type-book .col-md-12 .username, .node-type-page .pane-title {
+.node-type-faq .field-name-field-detailed-question, body:not(.node-type-book) .author, body:not(.node-type-book) .submitted, .node-type-book .col-md-12 .author, .node-type-book .col-md-12 .metadata, .node-type-book .nav-tabs, .node-type-book .col-md-12 .username, body:not(.panel-layout-radix_sutro_double) .node-type-page .pane-title, .node-type-page .radix-layouts-header .username {
 display: none !important;
 }
 
@@ -114,7 +147,7 @@ padding-top: 30px;
 padding-bottom: 30px;
 }
 
-.front .btn {
+.front #main .btn {
   display: block;
   height: 65px;
   width: 186px;
@@ -137,12 +170,16 @@ padding-bottom: 30px;
   position: absolute;
   content: '';
   display: inline-block;
-  background: #3bade3;
-  background: -webkit-linear-gradient(45deg, #3bade3 0%, #576fe6 25%, #9844b7 51%, #ff357f 100%);
-  background: linear-gradient(45deg, #3bade3 0%, #576fe6 25%, #9844b7 51%, #ff357f 100%);
+  background: #66E8C8;
+background: -webkit-linear-gradient(45deg, #66E8C8 0%, #447B7D 40%, #334557 60%, #220E31 100%);
+background: -moz-linear-gradient(45deg, #66E8C8 0%, #447B7D 40%, #334557 60%, #220E31 100%);
+background: -ms-linear-gradient(45deg, #66E8C8 0%, #447B7D 40%, #334557 60%, #220E31 100%);
+background: -o-linear-gradient(45deg, #66E8C8 0%, #447B7D 40%, #334557 60%, #220E31 100%);
+background: linear-gradient(45deg, #66E8C8 0%, #447B7D 40%, #334557 60%, #220E31 100%);
   height: 60px;
   width: 372px;
   z-index: -1;
+
   -webkit-transform: translateX(-280px);
       -ms-transform: translateX(-280px);
           transform: translateX(-280px);
@@ -170,65 +207,96 @@ padding-bottom: 30px;
 display: none;
 }
 
-.node-type-book .col-md-12 p {
-font-family: 'Merriweather', serif;
+.node-type-book #content {
+margin-top: -15px;  
+max-width: 550px;
 }
 
-#annoclicker {
-
-}  
+.node-type-book .col-md-12 p {
+font-family: 'Merriweather', serif;
+padding: 15px 0px;
+margin: 0px auto;
+} 
   
 #annoclicker:before {
 position: absolute;
-z-index: 1100;
+z-index: 0;
 font-family: FontAwesome;
-top: -12px;
-left: 200px;
-font-size: 3em;
+top: -22px;
+left: 290px;
+font-size: 4em;
 content: "\f086";
-color: #428bca;
+color: #447B7D;
+cursor: pointer;
+}
+
+#annoclicker:hover:before {
+color: #55B2A2 !important;
 }
 
 #mm-blocker {
-     background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% ! important;
+     background: transparent ! important;
      height: 35px ! important;
-     left: 20px;
+     left: 5px;
+  top: -3px;
      opacity: 1;
-     top: 45px;
      width: 35px ! important;
-     position: absolute;
      z-index: 2 !important;
 }
 
 #mm-blocker:before {
-     color: #428bca;
+     color: #447B7D;
      content: "";
      font-family: FontAwesome;
      font-size: 2em;
      position: absolute;
      z-index: 3 !important;
+    background: #FFFFFF;
+  border-radius: 0px 0px 8px 8px;
+  padding: 0px 5px;
+  cursor: pointer;
+}
+
+.mmenu-block-wrap {
+background: #FFFFFF;
+margin: 15px !important;
+border-radius: 4px;
+}
+
+.view-empty .mm-list li {
+border: none !important; 
+}
+
+.view-empty .mm-list li:before {
+font-family: 'FontAwesome'; 
+font-size: .6em;
+content: '\f111  ';
 }
 
 .node-type-book .pane-node-title .pane-content {
      font-size: 1.5em;
-     margin-left: 249.5px ! important;
+     margin-left: 253px ! important;
      margin-top: -34px ! important;
      position: absolute;
-     z-index: 1;
+     z-index: 0;
 }
 
 .bottom-pg {
-margin-left: 145px ! important;
-margin-top: 672px ! important;
+margin-left: 17px ! important;
+margin-top: 0px ! important;
 z-index: 1;
 }
 
-.col-md-12 .flag-my-bookmarks {
+.node-type-book .col-md-12 .flag-my-bookmarks {
      font-size: 4em;
-     left: 340px;
+     left: 215px;
      position: absolute;
      top: -20px;
      z-index: 0;
+}
+
+.node-type-book .col-md-12 .flag-my-bookmarks:hover {
+color: #55B2A2;
 }
 
 /* Annosidebar drawer */
@@ -296,6 +364,10 @@ min-width: 140px;
 width: 80%;
 }
 
+#mmenu_left {
+background: hsla(0,0%,0%,.7); 
+}
+
 .field-type-text-long {
 background-color: #fff;
 border: 1px solid #ddd;
@@ -305,6 +377,35 @@ padding: 10px;
 }
 
 /* End Book Page Business */
+/*****************************/
+/*****************************/
+/* Smallest Screen CSS */
+@media (max-width: 565px) {
+body {
+color: red !important; 
+}
+.col-md-12 .flag-my-bookmarks {
+left: 30% !important;
+top: -22px !important;
+float: left;
+}
+.node-type-book .pane-node-title .pane-content {
+position: relative !important;
+margin-top: -35px !important;
+margin-left: 48% !important;
+float: left;
+}
+.bottom-pg {
+position: relative !important;
+margin-left: 17px ! important;
+margin-top: 0px ! important;
+}
+#annoclicker:before {
+left: 58%;
+top: -22px !important;
+}
+}
+/* End Smallest Screen CSS */
 /*****************************/
 /*****************************/
 /* Widescreen CSS for Webkit */
@@ -330,29 +431,28 @@ transform: none !important;
 width: 32% !important;
 max-width: none !important;
 z-index: 0;
-top: 72px !important;
+top: 52px !important;
 right: auto !important;
 bottom: auto !important;
 left: 0px !important;
 }
 
 .mm-menu:first-child, .mm-menu.mm-current { 
-display: block; 
+display: block;
 }
 
 #annoclicker:before {
-position: absolute;
-z-index: 1100;
-font-family: FontAwesome;
-top: -22px;
-left: 418px;
-font-size: 4em;
-content: "\f086";
 color: #CCCCCC;
 cursor: not-allowed;
+top: -22px;
+left: 430px;
+}
+  
+#annoclicker:hover:before {
+color: #CCCCCC !important;
 }
 
-.node-type-book p {
+.node-type-book #content p {
 width: 540px;
 padding: 20px 12px 10px 14px;
 margin-left: -15px;
@@ -364,12 +464,15 @@ float: right !important;
 margin-right: -120px;
 }
 
-.node-type-book .form-item-search-block-form input {
-width: 190px !important;
-margin-left: -5px;
-margin-right: 5px;
+.bottom-pg {
+margin-left: 145px ! important;
+margin-top: 821px ! important;
 }
 
+.node-type-book .col-md-12 .flag-my-bookmarks {
+left: 330px;
+}  
+  
 } 
 /* End Widescreen CSS */
 /*****************************/

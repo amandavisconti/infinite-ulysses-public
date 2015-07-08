@@ -143,7 +143,7 @@ function radix_preprocess_page(&$variables) {
       );
     }
   }
-/*
+
   // Add search_form to theme.
   $variables['search_form'] = '';
   if (module_exists('search') && user_access('search content')) {
@@ -151,7 +151,7 @@ function radix_preprocess_page(&$variables) {
     $search_box_form['basic']['keys']['#title'] = 'Search';
     $search_box_form['basic']['keys']['#title_display'] = 'invisible';
     $search_box_form['basic']['keys']['#size'] = 20;
-    $search_box_form['basic']['keys']['#attributes'] = array('placeholder' => 'Search');
+    $search_box_form['basic']['keys']['#attributes'] = array('placeholder' => 'Search book & site');
     $search_box_form['basic']['keys']['#attributes']['class'][] = 'form-control';
     $search_box_form['basic']['submit']['#value'] = t('Search');
     $search_box_form['#attributes']['class'][] = 'navbar-form';
@@ -159,7 +159,7 @@ function radix_preprocess_page(&$variables) {
     $search_box = drupal_render($search_box_form);
     $variables['search_form'] = (user_access('search content')) ? $search_box : NULL;
   }
-*/  
+ 
   // Format and add main menu to theme.
   $variables['user_menu'] = menu_tree(variable_get('menu_user_links_source', 'user-menu'));
   $variables['user_menu']['#theme_wrappers'] = array();
